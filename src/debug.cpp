@@ -19,7 +19,7 @@ void testJSONParserLib() {
 
     infile.close();
 
-    // read a JSON file
+    // read a JSON
     ifstream inputFile("jsonExample.json");
     Json jsonObject;
     inputFile >> jsonObject;
@@ -41,6 +41,10 @@ void testPersonnageGenerator() {
     for(int i = 0; i < nbPersonnages; i++) {
         Json jPersonnage  = jsonObject[Constants::STRING_NAME_PERSONNAGES][i];
         Personnage p = jPersonnage;
-        p.sePresenter();
+        Personnage * clone = p.getClone();
+        clone->sePresenter();
+        delete clone;
     }
+
+
 }

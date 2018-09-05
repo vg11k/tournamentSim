@@ -19,6 +19,10 @@ class ProfileManager
         static ProfileManager * getMe();
         virtual ~ProfileManager();
 
+        NakedProfile getProfile(std::string type);
+
+        typedef std::map<std::string,NakedProfile>  ProfileMap;
+
     protected:
 
     private:
@@ -27,8 +31,9 @@ class ProfileManager
 
         void loadFaction(std::string factionFolderName);
 
-
         ProfileManager();
+
+
 };
 
 #endif // PROFILEMANAGER_H

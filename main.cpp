@@ -10,8 +10,9 @@ int main()
     cout << "Hello world!" << endl;
 
     //testJSONParserLib();
-    //testPersonnageGenerator();
-    ProfileManager *  manager = ProfileManager::getMe();
+    testPersonnageGenerator();
+
+
 
     cout << "Bye world!" << endl;
 

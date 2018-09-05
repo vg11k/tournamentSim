@@ -61,9 +61,17 @@ void ProfileManager::loadFaction(string factionFolderName) {
     int nbPersonnages = jsonObject[Constants::STRING_NAME_PROFILS].size();
     for(int i = 0; i < nbPersonnages; i++) {
         Json jProfiles  = jsonObject[Constants::STRING_NAME_PROFILS][i];
-        NakedProfile p = jProfiles;
-        cout << p.getType() << " + ";
-        m_profils->insert(std::pair<string,NakedProfile>(p.getType(), p));
+        NakedProfile nakedProfile = jProfiles;
+        cout << nakedProfile.getType() << " + ";
+        m_profils->insert(std::pair<string,NakedProfile>(nakedProfile.getType(), nakedProfile));
     }
     cout << endl;
+}
+
+NakedProfile ProfileManager::getProfile(std::string type) {
+    ProfileMap::iterator  it=  m_profils->find(type);
+    if( it == m_profils->end() ) {
+         throw std::invalid_argument( string("unknown character type asked : [") + type + string("]"));
+    }
+    return it->second;
 }
