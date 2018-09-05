@@ -1,0 +1,13 @@
+{
+	"personnages":[
+		{
+			"nom_personnage":"Wolfgang",
+			"type_profil":"vampire_seigneur"
+		},
+		{
+			"nom_personnage":"Darkula",
+			"type_profil": "vampire_courtisan"
+		}
+	]
+		
+}

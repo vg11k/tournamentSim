@@ -1,0 +1,44 @@
+{
+	"faction": "vampire",
+	"profils":[
+		{
+			"type_profil": "roi_revenant",
+			"type_personnage": "hero",
+			"capacite_combat": 5,
+			"capacite_tir": 0,
+			"force": 4,
+			"endurance": 5,
+			"points_de_vie": 3,
+			"initiative": 4,
+			"attaques": 3,
+			"commandement": 8,
+			"prix": 200
+		},
+		{
+			"type_profil": "vampire_courtisan",
+			"type_personnage": "hero",
+			"capacite_combat": 6,
+			"capacite_tir": 4,
+			"force": 5,
+			"endurance": 4,
+			"points_de_vie": 3,
+			"initiative": 6,
+			"attaques": 4,
+			"commandement": 8,
+			"prix": 170
+		},
+		{
+			"type_profil": "vampire_seigneur",
+			"type_personnage": "seigneur",
+			"capacite_combat": 7,
+			"capacite_tir": 5,
+			"force": 5,
+			"endurance": 5,
+			"points_de_vie": 3,
+			"initiative": 7,
+			"attaques": 5,
+			"commandement": 9,
+			"prix": 290
+		}
+	]
+}
