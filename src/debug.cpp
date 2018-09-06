@@ -41,9 +41,9 @@ void testPersonnageGenerator() {
     for(int i = 0; i < nbPersonnages; i++) {
         Json jPersonnage  = jsonObject[Constants::STRING_NAME_PERSONNAGES][i];
         Personnage p = jPersonnage;
-        Personnage * clone = p.getClone();
-        clone->sePresenter();
-        delete clone;
+        Duelliste * duelliste = p.getDuelliste();
+        duelliste->getPersonnage()->sePresenter();
+        delete duelliste;
     }
 
 

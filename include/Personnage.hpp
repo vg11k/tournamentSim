@@ -4,13 +4,15 @@
 #include <nlohmann/json.hpp>
 #include "Constants.h"
 #include "ProfileManager.hpp"
+#include "Duelliste.hpp"
 
+class Duelliste;
 
 class Personnage
 {
 public:
     Personnage() {};
-    Personnage(const Personnage & p);
+    //Personnage(const Personnage & p);
     Personnage(nlohmann::json jsonContainer);
     virtual ~Personnage();
 
@@ -21,7 +23,7 @@ public:
     void setType(std::string s);
     std::string getName() const;
     void setName(std::string s);
-    void setCapaciteCombat(int i);
+    /*void setCapaciteCombat(int i);
     int getCapaciteCombat() const;
     void setCapaciteTir(int i);
     int getCapaciteTir() const;
@@ -40,16 +42,16 @@ public:
     void setPrix(int i);
     int getPrix() const;
     void setFaction(std::string s);
-    std::string getFaction() const;
+    std::string getFaction() const;*/
 
-    Personnage * getClone();
+    Duelliste * getDuelliste();
 
 protected:
 
     std::string m_name;
 
     std::string m_type;
-    int m_capacite_combat;
+    /*int m_capacite_combat;
     int m_capacite_tir;
     int m_force;
     int m_endurance;
@@ -58,7 +60,7 @@ protected:
     int m_attaques;
     int m_commandement;
     int m_prix;
-    std::string m_faction;
+    std::string m_faction;*/
 
 private:
 };
@@ -82,7 +84,7 @@ inline void Personnage::setType(std::string s) {
 inline std::string Personnage::getType() const {
     return m_type;
 }
-inline void Personnage::setCapaciteCombat(int i) {
+/*inline void Personnage::setCapaciteCombat(int i) {
     m_capacite_combat = i;
 }
 inline int Personnage::getCapaciteCombat() const {
@@ -141,7 +143,7 @@ inline void Personnage::setFaction(std::string s) {
 }
 inline std::string Personnage::getFaction() const {
     return m_faction;
-}
+}*/
 
 
 
