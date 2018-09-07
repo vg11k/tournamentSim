@@ -314,7 +314,7 @@
 			"ameliorations":[],
 			"ajout_regles":[
 				{
-					"nom_regle": "peur_relance_basse",
+					"nom_regle": "peur_de_additionnel",
 					"valeur_regle": 1
 				}
 			]

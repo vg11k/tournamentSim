@@ -2,11 +2,15 @@
 	"personnages":[
 		{
 			"nom_personnage":"Wolfgang",
-			"type_profil":"vampire_seigneur"
+			"type_profil":"vampire_seigneur",
+			"achats": [],
+			"options":["stryge","forme_bestiale"]
 		},
 		{
 			"nom_personnage":"Darkula",
-			"type_profil": "vampire_courtisan"
+			"type_profil": "vampire_courtisan",
+			"achats": ["paire_armes","armure_legere"],
+			"options": ["heure_du_loup"]
 		}
 	]
 		
