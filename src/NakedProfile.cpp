@@ -5,12 +5,68 @@ using Json = nlohmann::json;
 
 NakedProfile::NakedProfile()
 {
-    //ctor
+    m_winningStats = new map<string, int>();
+    m_losingStats = new map<string, int>();
 }
 
 NakedProfile::~NakedProfile()
 {
-    //dtor
+    delete m_winningStats;
+    delete m_losingStats;
+}
+
+void NakedProfile::retrieveFrom(NakedProfile & original)
+{
+    setType(original.getType());
+    setCapaciteCombat(original.getCapaciteCombat());
+    setCapaciteTir(original.getCapaciteTir());
+    setForce(original.getForce());
+    setEndurance(original.getEndurance());
+    setPointsDeVie(original.getPointsDeVie());
+    setInitiative(original.getInitiative());
+    setAttaques(original.getAttaques());
+    setCommandement(original.getCommandement());
+    setPrix(original.getPrix());
+}
+
+void NakedProfile::incrementWinningStats(std::string profileType)
+{
+    map<string, int>::iterator  it=  m_winningStats->find(profileType);
+    if( it == m_winningStats->end() )
+    {
+        m_winningStats->insert(pair<string,int>(profileType, 0));
+    }
+    it->second++;
+}
+
+void NakedProfile::incrementLosingStats(std::string profileType)
+{
+    map<string, int>::iterator  it=  m_losingStats->find(profileType);
+    if( it == m_losingStats->end() )
+    {
+        m_losingStats->insert(pair<string,int>(profileType, 0));
+    }
+    it->second++;
+}
+
+int NakedProfile::getWiningStats(std::string profileType)
+{
+    map<string, int>::iterator  it=  m_winningStats->find(profileType);
+    if( it == m_winningStats->end() )
+    {
+        return 0;
+    }
+    return it->second;
+}
+
+int NakedProfile::getLosingStats(std::string profileType)
+{
+    map<string, int>::iterator  it=  m_losingStats->find(profileType);
+    if( it == m_losingStats->end() )
+    {
+        return 0;
+    }
+    return it->second;
 }
 
 void to_json(Json& j, const NakedProfile& p)

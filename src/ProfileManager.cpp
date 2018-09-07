@@ -7,7 +7,7 @@ ProfileManager * ProfileManager::m_me = NULL;
 
 ProfileManager::ProfileManager()
 {
-    m_profils = new map<string, NakedProfile>();
+    m_profils = new map<string, NakedProfile*>();
 
     DIR *dp;
     struct dirent *ep;
@@ -56,19 +56,30 @@ void ProfileManager::loadFaction(string factionFolderName) {
 
     string faction = jsonObject[Constants::STRING_NAME_FACTION];
 
-    cout << "Chargement de la faction " << faction << " : ";
+    cout << "Chargement de la faction " << faction << " : " << endl;
+
+    map<string, NakedProfile*> noPtrMap = *m_profils;
 
     int nbPersonnages = jsonObject[Constants::STRING_NAME_PROFILS].size();
     for(int i = 0; i < nbPersonnages; i++) {
         Json jProfiles  = jsonObject[Constants::STRING_NAME_PROFILS][i];
         NakedProfile nakedProfile = jProfiles;
-        cout << nakedProfile.getType() << " + ";
-        m_profils->insert(std::pair<string,NakedProfile>(nakedProfile.getType(), nakedProfile));
+
+        //oblige de passer par une reference intermediaire : la construction json je prends pas les pointeurs
+        //et ne supporte pas les constructeurs multiples
+        NakedProfile * profilePtr = new NakedProfile();
+        profilePtr->retrieveFrom(nakedProfile);
+        profilePtr->setFaction(faction);
+
+        //noPtrMap[profilePtr->getType()] = profilePtr;
+        (*m_profils)[profilePtr->getType()] = profilePtr;
+
+        cout << profilePtr->getType() << " charge " << endl;
     }
-    cout << endl;
 }
 
-NakedProfile ProfileManager::getProfile(std::string type) {
+NakedProfile * ProfileManager::getProfile(std::string type) {
+
     ProfileMap::iterator  it=  m_profils->find(type);
     if( it == m_profils->end() ) {
          throw std::invalid_argument( string("unknown character type asked : [") + type + string("]"));

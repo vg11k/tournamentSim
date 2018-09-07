@@ -36,6 +36,14 @@ public:
     void setFaction(std::string s);
     std::string getFaction() const;
 
+    void incrementWinningStats(std::string profileType);
+    void incrementLosingStats(std::string profileType);
+
+    int getWiningStats(std::string profileType);
+    int getLosingStats(std::string profileType);
+
+    void retrieveFrom(NakedProfile & original);
+
 protected:
 
 
@@ -53,6 +61,9 @@ private:
     int m_commandement;
     int m_prix;
     std::string m_faction;
+    int m_profilId;
+    std::map<std::string, int> * m_winningStats;
+    std::map<std::string, int> * m_losingStats;
 };
 
 void to_json(nlohmann::json& j, const NakedProfile& p);
@@ -124,6 +135,8 @@ inline void NakedProfile::setFaction(std::string s) {
 inline std::string NakedProfile::getFaction() const {
     return m_faction;
 }
+
+
 
 
 #endif // NAKEDPROFILE_H

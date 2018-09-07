@@ -38,13 +38,47 @@ void testPersonnageGenerator() {
 
 
     int nbPersonnages = jsonObject[Constants::STRING_NAME_PERSONNAGES].size();
+    vector<Personnage> * personnages = new vector<Personnage>();
     for(int i = 0; i < nbPersonnages; i++) {
         Json jPersonnage  = jsonObject[Constants::STRING_NAME_PERSONNAGES][i];
         Personnage p = jPersonnage;
-        Duelliste * duelliste = p.getDuelliste();
+        personnages->push_back(p);
+        /*Duelliste * duelliste = p.getDuelliste();
         duelliste->getPersonnage()->sePresenter();
-        delete duelliste;
+        delete duelliste;*/
     }
 
 
+
+
+
+
+}
+
+
+void testCSVParser() {
+    vector<vector<int>*>* result = CSVParser::getCombatGridFromCSV("CCvsCC.csv");
+
+    for(int j = 0; j < result->size(); j++) {
+        vector<int> * currentLine = result->at(j);
+        for(int i = 0; i < currentLine->size(); i++)
+        {
+            cout << currentLine->at(i) << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+void testFight() {
+
+    Tournament tournament;
+    vector<Personnage> * persos = tournament.getPersonnages();
+    persos->at(0).sePresenter();
+    persos->at(1).sePresenter();
+    Duelliste * d1 = persos->at(0).getDuelliste();
+    Duelliste * d2 = persos->at(1).getDuelliste();
+    cout << "duellistes generes" << endl;
+
+    tournament.makeFight(d1, d2);
 }
