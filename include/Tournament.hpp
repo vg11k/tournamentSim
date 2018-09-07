@@ -29,6 +29,13 @@ class Tournament
         bool aTouche(int roll, int CCa, int CCc);
         bool aBlesse(int roll, int force, int endu);
 
+        bool peutAttaquer(Duelliste * attaquant, Duelliste * cible);
+        void effectuerAttaques(Duelliste * attaquant, Duelliste * cible);
+        bool blessureAnnulee(Duelliste * attaquant, Duelliste * cible, bool attaqueSpeciale);
+
+        int getNew6D();
+
+
 };
 
 inline std::vector<Personnage> *  Tournament::getPersonnages(){

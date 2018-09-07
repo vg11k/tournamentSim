@@ -59,9 +59,9 @@ void testPersonnageGenerator() {
 void testCSVParser() {
     vector<vector<int>*>* result = CSVParser::getCombatGridFromCSV("CCvsCC.csv");
 
-    for(int j = 0; j < result->size(); j++) {
+    for(unsigned int j = 0; j < result->size(); j++) {
         vector<int> * currentLine = result->at(j);
-        for(int i = 0; i < currentLine->size(); i++)
+        for(unsigned int i = 0; i < currentLine->size(); i++)
         {
             cout << currentLine->at(i) << " ";
         }

@@ -22,13 +22,9 @@ void Personnage::sePresenter() {
 Duelliste * Personnage::getDuelliste() {
 
     ProfileManager * manager = ProfileManager::getMe();
-
-
     NakedProfile * nakedProfile = manager->getProfile(getType());
-    cout << "profil trouve : " << nakedProfile->getType()<<" de CC " << nakedProfile->getCapaciteCombat() << endl;
-
-
     Duelliste * duelliste = new Duelliste(nakedProfile, this);
+    duelliste->setFaction(nakedProfile->getFaction());
     return duelliste;
 }
 

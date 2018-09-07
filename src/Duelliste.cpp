@@ -1,5 +1,7 @@
 #include "Duelliste.hpp"
 
+using namespace std;
+
 Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
 {
 
@@ -18,7 +20,8 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setFaction("toto");
     setCurrentHP(getPointsDeVie());
 
-    std::cout << "CC duelliste " << getCapaciteCombat() << std::endl;
+    m_regeneration = 999;
+    m_invulnerable = 999;
 }
 
 Duelliste::~Duelliste()
@@ -60,4 +63,32 @@ void Duelliste::removeHP(int i) {
 
 void Duelliste::sePresenter() {
     std::cout << "J'ai " << m_capacite_combat << " de CC et " << m_force << " en force" << std::endl;
+}
+
+bool Duelliste::utiliseAttaquesEnflammees() {
+    return m_utiliseAttaquesEnflammees;
+}
+bool Duelliste::utiliseAttaquesDivines() {
+    return m_utiliseAttaquesDivines;
+}
+
+bool Duelliste::beneficieRegeneration() {
+    return m_regeneration != 999;
+}
+bool Duelliste::beneficieInvulnerabilite() {
+    return m_invulnerable != 999;
+}
+
+int Duelliste::getPerforant() {
+    return m_perforant;
+}
+
+int Duelliste::getSauvegardeArmure() {
+    return m_armure;
+}
+int Duelliste::getRegeneration() {
+    return m_regeneration;
+}
+int Duelliste::getSauvegardeInvulnerable() {
+    return m_invulnerable;
 }

@@ -34,6 +34,11 @@ Tournament::Tournament()
 
 }
 
+int Tournament::getNew6D()
+{
+    return rand() %(6) + 1;
+}
+
 /*Duelliste * duelliste = p.getDuelliste();
        duelliste->getPersonnage()->sePresenter();
        delete duelliste;*/
@@ -88,58 +93,24 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
             secondAAttaquer = d1;
         }
 
-        int CCdueliste1 = premierAAttaquer->getCapaciteCombat();
-        int CCdueliste2 = secondAAttaquer->getCapaciteCombat();
 
-        int forceDueliste1 = premierAAttaquer->getForce();
-        int forceDueliste2 = secondAAttaquer->getForce();
-        int enduranceDueliste1 = premierAAttaquer->getEndurance();
-        int enduranceDueliste2 = secondAAttaquer->getEndurance();
-
-        int attaquesDuelliste1 = premierAAttaquer->getAttaques();
-        int attaquesDuelliste2 = secondAAttaquer->getAttaques();
-
-        //attaques plus rapide
-        for(int attaqueIndex = 0; attaqueIndex < attaquesDuelliste1; attaqueIndex++)
+        if(peutAttaquer(premierAAttaquer, secondAAttaquer))
         {
-            int roll = rand()%(6);
-            cout << roll << " pour toucher " << endl;
-            if(aTouche(roll,CCdueliste1, CCdueliste2))
-            {
-                roll = rand() %(6);
-                cout << roll << " pour blesser " << endl;
-                if(aBlesse(roll, forceDueliste1, enduranceDueliste2))
-                {
-                    secondAAttaquer->removeHP(1);
-                    cout << secondAAttaquer->getName() << " a perdu un pv." << endl;
-                }
-
-            }
+            effectuerAttaques(premierAAttaquer, secondAAttaquer);
         }
 
         if(sameInit || secondAAttaquer->getCurrentHP() > 0 )
         {
-            for(int attaqueIndex = 0; attaqueIndex < attaquesDuelliste2; attaqueIndex++)
+            if(peutAttaquer(secondAAttaquer, premierAAttaquer))
             {
-                int roll = rand()%(6);
-                cout << roll << " pour toucher " << endl;
-
-                if(aTouche(roll,CCdueliste2, CCdueliste1))
-            {
-                roll = rand() %(6);
-                cout << roll << " pour blesser " << endl;
-                    if(aBlesse(roll, forceDueliste2, enduranceDueliste1))
-                    {
-                        premierAAttaquer->removeHP(1);
-                        cout << premierAAttaquer->getName() << " a perdu un pv." << endl;
-                    }
-
-                }
+                effectuerAttaques(secondAAttaquer, premierAAttaquer);
             }
+
         }
 
         //mort simultanee : tout le monde repart avec 1hp pour un nouveau round
-        if(premierAAttaquer->getCurrentHP() < 1 && secondAAttaquer->getCurrentHP() < 1) {
+        if(premierAAttaquer->getCurrentHP() < 1 && secondAAttaquer->getCurrentHP() < 1)
+        {
             premierAAttaquer->setCurrentHP(1);
             secondAAttaquer->setCurrentHP(1);
         }
@@ -154,3 +125,104 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
     }
 }
 
+
+bool Tournament::peutAttaquer(Duelliste * attaquant, Duelliste * cible)
+{
+    return true;
+}
+
+void Tournament::effectuerAttaques(Duelliste * attaquant, Duelliste * cible)
+{
+
+    int CCdueliste1 = attaquant->getCapaciteCombat();
+    int CCdueliste2 = cible->getCapaciteCombat();
+
+    int forceDueliste1 = attaquant->getForce();
+    int enduranceDueliste2 = cible->getEndurance();
+    int attaquesDuelliste1 = attaquant->getAttaques();
+
+    for(int attaqueIndex = 0; attaqueIndex < attaquesDuelliste1; attaqueIndex++)
+    {
+        int roll = getNew6D();
+        cout << roll << " pour toucher " << endl;
+        //reussir a attaquer
+        if(aTouche(roll,CCdueliste1, CCdueliste2))
+        {
+            roll = getNew6D();
+            cout << roll << " pour blesser " << endl;
+            //reussir a blesser
+            if(aBlesse(roll, forceDueliste1, enduranceDueliste2))
+            {
+                //passer les defenses
+                if(!blessureAnnulee(attaquant, cible, false))
+                {
+                    //TODO ajouter BM
+                    cible->removeHP(1);
+                    cout << cible->getName() << " a perdu un pv." << endl;
+                }
+            }
+
+        }
+    }
+}
+
+bool Tournament::blessureAnnulee(Duelliste * attaquant, Duelliste * cible, bool attaqueSpeciale)
+{
+
+    int roll;
+
+    //sauvegarde armure
+    int modificateurDArmure = 0;
+    if(attaquant->getForce() > 3)
+    {
+        modificateurDArmure += attaquant->getForce() - 3;
+    }
+    if(!attaqueSpeciale)
+    {
+        modificateurDArmure += attaquant->getPerforant();
+    }
+
+    int sauvegardeArmure = cible->getSauvegardeArmure() + modificateurDArmure;
+    if(sauvegardeArmure < 7)
+    {
+        roll = getNew6D();
+        if(roll >= sauvegardeArmure)
+        {
+            return true;
+        }
+
+    }
+
+    //regen
+    if(!attaquant->utiliseAttaquesEnflammees() && cible->beneficieRegeneration())
+    {
+        int valeurRegeneration = cible->getRegeneration();
+        roll = getNew6D();
+        if( roll >= valeurRegeneration)
+        {
+            return true;
+        }
+    }
+
+    //invulnerable
+    if(cible->beneficieInvulnerabilite())
+    {
+        int sauvegardeInvulnerable = cible->getSauvegardeInvulnerable();
+        roll = getNew6D();
+        if( roll >= sauvegardeInvulnerable)
+        {
+            if(!attaquant->utiliseAttaquesDivines())
+            {
+                return true;
+            }
+            else {
+                roll = getNew6D();
+                if( roll >= sauvegardeInvulnerable)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

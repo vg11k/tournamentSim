@@ -6,6 +6,7 @@
 #include "Personnage.hpp"
 #include "NakedProfile.hpp"
 
+
 class Personnage;
 
 class Duelliste
@@ -48,6 +49,20 @@ public:
     int getCurrentHP() const;
     void setCurrentHP(int i);
 
+
+
+    bool utiliseAttaquesEnflammees();
+    bool utiliseAttaquesDivines();
+
+    bool beneficieRegeneration();
+    bool beneficieInvulnerabilite();
+
+    int getPerforant();
+
+    int getSauvegardeArmure();
+    int getRegeneration();
+    int getSauvegardeInvulnerable();
+
     void sePresenter();
 
 protected:
@@ -64,6 +79,14 @@ private:
     int m_commandement;
     int m_prix;
     std::string m_faction;
+
+    bool m_utiliseAttaquesEnflammees;
+    bool m_utiliseAttaquesDivines;
+
+    int m_perforant;
+    int m_armure;
+    int m_regeneration;
+    int m_invulnerable;
 
     int m_currentHP;
 
