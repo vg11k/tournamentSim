@@ -12,7 +12,59 @@
 			"initiative": 4,
 			"attaques": 3,
 			"commandement": 8,
-			"prix": 200
+			"prix": 200,
+			"regles":[
+				{
+					"nom_regle": "mort-vivant",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle: "attaques_magiques",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "coup_fatal",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "blessures_multiples",
+					"valeur_regle": 2
+				},
+			],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 100,
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "armure_lourde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 6
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 8
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 12
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 12
+				},
+				{
+					"nom_achat": "monture_squelette",
+					"valeur_achat": 50
+				}
+			]	
 		},
 		{
 			"type_profil": "vampire_courtisan",
@@ -25,7 +77,67 @@
 			"initiative": 6,
 			"attaques": 4,
 			"commandement": 8,
-			"prix": 170
+			"prix": 170,
+			"regles":[
+				{
+					"nom_regle": "vampirique",
+					"valeur_regle": 6
+				},
+				{
+					"nom_regle": "mort-vivant",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "peur",
+					"valeur_regle": 1
+				}
+			],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 100,
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "armure_legere",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "armure lourde",
+					"valeur_achat": 20
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 20
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 20
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 30
+				},
+				{
+					"nom_achat": "monture_squelette",
+					"valeur_achat": 60
+				},
+				{
+					"nom_achat": "monture_spectrale",
+					"valeur_achat": 110
+				},
+				{
+					"nom_achat": "monture_squelette",
+					"valeur_achat": 260
+				}
+			]
 		},
 		{
 			"type_profil": "vampire_seigneur",
@@ -38,7 +150,154 @@
 			"initiative": 7,
 			"attaques": 5,
 			"commandement": 9,
-			"prix": 290
+			"prix": 290,
+			"regles":[
+				{
+					"nom_regle": "vampirique",
+					"valeur_regle": 6
+				},
+				{
+					"nom_regle": "mort-vivant",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "peur",
+					"valeur_regle": 1
+				}
+			],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 200,
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "armure_legere",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "armure lourde",
+					"valeur_achat": 20
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 30
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 40
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 40
+				},
+				{
+					"nom_achat": "monture_squelette",
+					"valeur_achat": 70
+				},
+				{
+					"nom_achat": "monture_spectrale",
+					"valeur_achat": 120
+				},
+				{
+					"nom_achat": "monture_squelette",
+					"valeur_achat": 260
+				}
+			]
 		}
+	],
+	"options":[
+		{
+			"nom_option": "dragon_sang",
+			"prix":60,
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"incompatibilite": ["von_carstein", "lahmian", "stryge"],
+			"necessite": [],
+			"achats_additionnels": [
+				{
+					"nom_achat": "armure_lourde",
+					"valeur_achat": 0
+				}
+			],
+			"ameliorations": [
+				{
+						"nom_caracteristique": "capacite_combat",
+						"valeur_amelioration": 2
+				}
+			],
+			"ajout_regles":[]
+		},
+		{
+			"nom_option": "rage_ecarlate",
+			"prix":130,
+			"profils_eligibles": ["vampire_seigneur"],
+			"incompatibilite": ["von_carstein", "lahmian", "stryge"],
+			"necessite": ["dragon_sang"],
+			"achats_additionnels": [],
+			"ameliorations":[],
+			"ajout_regles":[
+				"nom_regle": "blessure_genere_blessure",
+				"valeur_regle": 1
+			]
+		},
+		{
+			"nom_option": "duelliste_eternel",
+			"prix":100,
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"incompatibilite": [],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ameliorations":[],
+			"ajout_regles":[
+				"nom_regle": "relance_touche",
+				"valeur_regle": 1
+			]
+		},
+		{
+			"nom_option": "guerrier_ultime",
+			"prix":60,
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"incompatibilite": [],
+			"necessite": [],
+			"achats_additionnels": [
+			{
+					"nom_achat": "bouclier",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "armure_lourde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 0
+				}
+			],
+			"ameliorations":[],
+			"ajout_regles":[
+				"nom_regle": "coup_fatal",
+				"valeur_regle": 1
+			]
+		}
+	
 	]
 }
