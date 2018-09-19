@@ -61,26 +61,45 @@ bool Tournament::aBlesse(int roll, int force, int endu)
     return val <= roll;
 }
 
+void Tournament::verifierMortSimultanee(Duelliste * d1, Duelliste * d2) {
+    if(d1->getCurrentHP() < 1 && d2->getCurrentHP() < 1)
+    {
+        d1->setCurrentHP(1);
+        d2->setCurrentHP(1);
+    }
+}
+
 void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
 {
 
-    bool sameInit = d1->getInitiative() == d2->getInitiative();
-    bool d1AttaqueEnPremier;
-    if(d1->getInitiative() > d2->getInitiative())
-    {
-        d1AttaqueEnPremier = true;
-    }
-    else
-    {
-        d1AttaqueEnPremier = false;
-    }
 
     bool stop = false;
+    int roundCounter = 0;
 
     while(!stop)
     {
+        roundCounter++;
         Duelliste * premierAAttaquer;
         Duelliste * secondAAttaquer;
+
+        //l'armure des etoiles elfique peut provoquer une seconde charge + phase de tir
+        bool tourDeCharge = d1->charge() || d2->charge();
+        if(tourDeCharge) {
+            effectuerAttaquesDeTir(d1, d2);
+        }
+
+        //les potions & bonus au tour de chage peuvent temporairement changer l'initiative
+        bool sameInit = d1->getInitiative() == d2->getInitiative();
+        bool d1AttaqueEnPremier;
+        if(d1->getInitiative() > d2->getInitiative())
+        {
+            d1AttaqueEnPremier = true;
+        }
+        else
+        {
+            d1AttaqueEnPremier = false;
+        }
+
 
         if(d1AttaqueEnPremier)
         {
@@ -96,24 +115,23 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
 
         if(peutAttaquer(premierAAttaquer, secondAAttaquer))
         {
-            effectuerAttaques(premierAAttaquer, secondAAttaquer);
+            effectuerAttaques(premierAAttaquer, secondAAttaquer, roundCounter, tourDeCharge);
         }
 
         if(sameInit || secondAAttaquer->getCurrentHP() > 0 )
         {
             if(peutAttaquer(secondAAttaquer, premierAAttaquer))
             {
-                effectuerAttaques(secondAAttaquer, premierAAttaquer);
+                effectuerAttaques(secondAAttaquer, premierAAttaquer, roundCounter, tourDeCharge);
             }
 
         }
 
+        premierAAttaquer->aCharge();
+        secondAAttaquer->aCharge();
+
         //mort simultanee : tout le monde repart avec 1hp pour un nouveau round
-        if(premierAAttaquer->getCurrentHP() < 1 && secondAAttaquer->getCurrentHP() < 1)
-        {
-            premierAAttaquer->setCurrentHP(1);
-            secondAAttaquer->setCurrentHP(1);
-        }
+        verifierMortSimultanee(premierAAttaquer, secondAAttaquer);
 
         if(premierAAttaquer->getCurrentHP() < 1 || secondAAttaquer->getCurrentHP() <1 )
         {
@@ -125,13 +143,24 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
     }
 }
 
+void Tournament::effectuerAttaquesDeTir(Duelliste * d1, Duelliste * d2)
+{
+    //TODO
+
+
+    //si les deux duellistes ne se sont pas entre-tués au tir.
+    //si oui les charges s'effectueront a 1pv partout
+    verifierMortSimultanee(d1, d2);
+
+}
+
 
 bool Tournament::peutAttaquer(Duelliste * attaquant, Duelliste * cible)
 {
     return true;
 }
 
-void Tournament::effectuerAttaques(Duelliste * attaquant, Duelliste * cible)
+void Tournament::effectuerAttaques(Duelliste * attaquant, Duelliste * cible, int roundCounter, bool tourDeCharge)
 {
 
     int CCdueliste1 = attaquant->getCapaciteCombat();
@@ -157,7 +186,8 @@ void Tournament::effectuerAttaques(Duelliste * attaquant, Duelliste * cible)
                 if(!blessureAnnulee(attaquant, cible, false))
                 {
                     //TODO ajouter BM
-                    cible->removeHP(1);
+                    int degatsInfliges = attaquant->getBlessuresMultiples(cible, roundCounter, tourDeCharge);
+                    cible->removeHP(degatsInfliges);
                     cout << cible->getName() << " a perdu un pv." << endl;
                 }
             }

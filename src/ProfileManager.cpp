@@ -65,7 +65,7 @@ void ProfileManager::loadFaction(string factionFolderName) {
         Json jProfiles  = jsonObject[Constants::STRING_NAME_PROFILS][i];
         NakedProfile nakedProfile = jProfiles;
 
-        //oblige de passer par une reference intermediaire : la construction json je prends pas les pointeurs
+        //oblige de passer par une reference intermediaire : la construction json ne prends pas les pointeurs
         //et ne supporte pas les constructeurs multiples
         NakedProfile * profilePtr = new NakedProfile();
         profilePtr->retrieveFrom(nakedProfile);

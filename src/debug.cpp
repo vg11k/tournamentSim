@@ -74,10 +74,14 @@ void testFight() {
 
     Tournament tournament;
     vector<Personnage> * persos = tournament.getPersonnages();
-    persos->at(0).sePresenter();
-    persos->at(1).sePresenter();
+
+
     Duelliste * d1 = persos->at(0).getDuelliste();
-    Duelliste * d2 = persos->at(1).getDuelliste();
+    Duelliste * d2 = persos->at(2).getDuelliste();
+    persos->at(0).sePresenter();
+    d1->sePresenter();
+    persos->at(2).sePresenter();
+    d2->sePresenter();
     cout << "duellistes generes" << endl;
 
     tournament.makeFight(d1, d2);

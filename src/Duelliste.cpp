@@ -22,6 +22,7 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
 
     m_regeneration = 999;
     m_invulnerable = 999;
+    m_charge = true;
 }
 
 Duelliste::~Duelliste()
@@ -63,6 +64,13 @@ void Duelliste::removeHP(int i) {
 
 void Duelliste::sePresenter() {
     std::cout << "J'ai " << m_capacite_combat << " de CC et " << m_force << " en force" << std::endl;
+    std::cout << "Voici mes regles : ";
+
+    for(Rules::iterator it = getNakedProfile()->getRegles()->begin() ; it!= getNakedProfile()->getRegles()->end() ; ++it)
+    {
+            std::cout << it->first  << " ";
+    }
+    std::cout << std::endl;
 }
 
 bool Duelliste::utiliseAttaquesEnflammees() {
@@ -91,4 +99,16 @@ int Duelliste::getRegeneration() {
 }
 int Duelliste::getSauvegardeInvulnerable() {
     return m_invulnerable;
+}
+
+int Duelliste::getBlessuresMultiples(Duelliste * cible, int roundCounter, bool tourDeCharge) {
+    //TODO
+    return 1;
+}
+
+void Duelliste::aCharge() {
+    m_charge = false;
+}
+bool Duelliste::charge() {
+    return m_charge;
 }

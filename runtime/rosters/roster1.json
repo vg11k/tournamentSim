@@ -11,6 +11,12 @@
 			"type_profil": "vampire_courtisan",
 			"achats": ["paire_armes","armure_legere"],
 			"options": ["heure_du_loup"]
+		},
+		{
+			"nom_personnage":"Oldrick",
+			"type_profil": "roi_revenant",
+			"achats": ["arme_lourde","armure_lourde"],
+			"options": []
 		}
 	]
 		

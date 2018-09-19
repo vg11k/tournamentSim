@@ -49,7 +49,10 @@ public:
     int getCurrentHP() const;
     void setCurrentHP(int i);
 
+    void aCharge();
+    bool charge();
 
+    int getBlessuresMultiples(Duelliste * cible, int roundCounter, bool tourDeCharge);
 
     bool utiliseAttaquesEnflammees();
     bool utiliseAttaquesDivines();
@@ -65,6 +68,8 @@ public:
 
     void sePresenter();
 
+    typedef std::map<std::string, int>  Rules;
+
 protected:
 
 private:
@@ -79,6 +84,8 @@ private:
     int m_commandement;
     int m_prix;
     std::string m_faction;
+
+    bool m_charge;
 
     bool m_utiliseAttaquesEnflammees;
     bool m_utiliseAttaquesDivines;

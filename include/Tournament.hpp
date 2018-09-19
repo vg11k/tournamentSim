@@ -29,8 +29,10 @@ class Tournament
         bool aTouche(int roll, int CCa, int CCc);
         bool aBlesse(int roll, int force, int endu);
 
+        void verifierMortSimultanee(Duelliste * d1, Duelliste * d2);
+        void effectuerAttaquesDeTir(Duelliste * d1, Duelliste * d2);
         bool peutAttaquer(Duelliste * attaquant, Duelliste * cible);
-        void effectuerAttaques(Duelliste * attaquant, Duelliste * cible);
+        void effectuerAttaques(Duelliste * attaquant, Duelliste * cible, int roundCounter, bool tourDeCharge);
         bool blessureAnnulee(Duelliste * attaquant, Duelliste * cible, bool attaqueSpeciale);
 
         int getNew6D();

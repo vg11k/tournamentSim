@@ -13,22 +13,22 @@
 			"attaques": 3,
 			"commandement": 8,
 			"prix": 200,
-			"regles":[
+			"regles": [
 				{
-					"nom_regle": "mort-vivant",
-					"valeur_regle": 1
+					"nom_regle" : "mort-vivant",
+					"valeur_regle" : 1
 				},
 				{
-					"nom_regle": "attaques_magiques",
-					"valeur_regle": 1
+					"nom_regle" : "attaques_magiques",
+					"valeur_regle" : 1
 				},
 				{
-					"nom_regle": "coup_fatal",
-					"valeur_regle": 1
+					"nom_regle" : "coup_fatal",
+					"valeur_regle" : 1
 				},
 				{
-					"nom_regle": "blessures_multiples",
-					"valeur_regle": 2
+					"nom_regle" : "blessures_multiples",
+					"valeur_regle" : 2
 				}
 			],
 			"achats":[

@@ -20,9 +20,6 @@ const string Constants::STRING_VALUE_VAMPIRE= "vampire";
 
 const string Constants::STRING_NAME_PROFILS = "profils";
 const string Constants::STRING_NAME_TYPE_PROFIL= "type_profil";
-const string Constants::STRING_VALUE_ROI_REVENANT= "roi_revenant";
-const string Constants::STRING_VALUE_VAMPIRE_COURTISAN= "vampire_courtisan";
-const string Constants::STRING_VALUE_VAMPIRE_SEIGNEUR= "vampire_seigneur";
 
 const string Constants::STRING_NAME_PERSONNAGES= "personnages";
 const string Constants::STRING_NAME_NOM_PERSONNAGE= "nom_personnage";

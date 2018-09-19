@@ -30,10 +30,6 @@ public:
 
     static const std::string STRING_NAME_PROFILS;
     static const std::string STRING_NAME_TYPE_PROFIL;
-    static const std::string STRING_VALUE_ROI_REVENANT;
-    static const std::string STRING_VALUE_VAMPIRE_COURTISAN;
-    static const std::string STRING_VALUE_VAMPIRE_SEIGNEUR;
-
 
     static const std::string STRING_NAME_PERSONNAGES;
     static const std::string STRING_NAME_NOM_PERSONNAGE;

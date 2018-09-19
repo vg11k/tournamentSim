@@ -33,6 +33,11 @@ public:
     int getCommandement() const;
     void setPrix(int i);
     int getPrix() const;
+    void setRegles(std::map<std::string, int> * r);
+    void setRegles(std::vector<nlohmann::json>& j);
+    void addRegle(nlohmann::json& j);
+
+    std::map<std::string, int> * getRegles() const;
     void setFaction(std::string s);
     std::string getFaction() const;
 
@@ -43,6 +48,8 @@ public:
     int getLosingStats(std::string profileType);
 
     void retrieveFrom(NakedProfile & original);
+
+    typedef std::map<std::string, int>  Rules;
 
 protected:
 
@@ -60,6 +67,7 @@ private:
     int m_attaques;
     int m_commandement;
     int m_prix;
+    std::map<std::string, int> * m_regles;
     std::string m_faction;
     int m_profilId;
     std::map<std::string, int> * m_winningStats;
