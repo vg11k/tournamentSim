@@ -35,7 +35,10 @@ class Tournament
         void effectuerAttaques(Duelliste * attaquant, Duelliste * cible, int roundCounter, bool tourDeCharge);
         bool blessureAnnulee(Duelliste * attaquant, Duelliste * cible, bool attaqueSpeciale);
 
+        void finDeRound(Duelliste * d1, Duelliste * d2);
+
         int getNew6D();
+        int getNewD(int i);
 
 
 };

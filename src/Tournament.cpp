@@ -39,6 +39,10 @@ int Tournament::getNew6D()
     return rand() %(6) + 1;
 }
 
+int Tournament::getNewD(int i) {
+    return rand() %(i) + 1;
+}
+
 /*Duelliste * duelliste = p.getDuelliste();
        duelliste->getPersonnage()->sePresenter();
        delete duelliste;*/
@@ -127,8 +131,7 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
 
         }
 
-        premierAAttaquer->aCharge();
-        secondAAttaquer->aCharge();
+        finDeRound(d1, d2);
 
         //mort simultanee : tout le monde repart avec 1hp pour un nouveau round
         verifierMortSimultanee(premierAAttaquer, secondAAttaquer);
@@ -141,6 +144,11 @@ void Tournament::makeFight(Duelliste * d1, Duelliste * d2)
             cout << secondAAttaquer->getName() << " a " << secondAAttaquer->getCurrentHP() << " HP" << endl;
         }
     }
+}
+
+void Tournament::finDeRound(Duelliste * d1, Duelliste * d2) {
+    d1->updateStatus();
+    d1->updateStatus();
 }
 
 void Tournament::effectuerAttaquesDeTir(Duelliste * d1, Duelliste * d2)

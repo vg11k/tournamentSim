@@ -16,6 +16,8 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setAttaques(profil->getAttaques());
     setCommandement(profil->getCommandement());
     setPrix(profil->getPrix());
+
+    completer(profil->getRegles(), personnage->getAjout());
     //setFaction(profil->getFaction());
     setFaction("toto");
     setCurrentHP(getPointsDeVie());
@@ -31,6 +33,9 @@ Duelliste::~Duelliste()
 }
 
 
+/*//////////////////////
+// get            set //
+//////////////////////*/
 
 void Duelliste::setPersonnage(Personnage * p)
 {
@@ -58,20 +63,7 @@ std::string Duelliste::getType() const
     return m_nakedProfile->getType();
 }
 
-void Duelliste::removeHP(int i) {
-    m_currentHP -= i;
-}
 
-void Duelliste::sePresenter() {
-    std::cout << "J'ai " << m_capacite_combat << " de CC et " << m_force << " en force" << std::endl;
-    std::cout << "Voici mes regles : ";
-
-    for(Rules::iterator it = getNakedProfile()->getRegles()->begin() ; it!= getNakedProfile()->getRegles()->end() ; ++it)
-    {
-            std::cout << it->first  << " ";
-    }
-    std::cout << std::endl;
-}
 
 bool Duelliste::utiliseAttaquesEnflammees() {
     return m_utiliseAttaquesEnflammees;
@@ -101,14 +93,39 @@ int Duelliste::getSauvegardeInvulnerable() {
     return m_invulnerable;
 }
 
+/*/////////////////////
+//                  //
+////////////////////*/
+
 int Duelliste::getBlessuresMultiples(Duelliste * cible, int roundCounter, bool tourDeCharge) {
     //TODO
     return 1;
 }
 
-void Duelliste::aCharge() {
-    m_charge = false;
+void Duelliste::removeHP(int i) {
+    m_currentHP -= i;
 }
+
+void Duelliste::sePresenter() {
+    std::cout << "J'ai " << m_capacite_combat << " de CC et " << m_force << " en force" << std::endl;
+    std::cout << "Voici mes regles : ";
+
+    for(Rules::iterator it = getNakedProfile()->getRegles()->begin() ; it!= getNakedProfile()->getRegles()->end() ; ++it)
+    {
+            std::cout << it->first  << " ";
+    }
+    std::cout << std::endl;
+}
+
 bool Duelliste::charge() {
     return m_charge;
+}
+
+void Duelliste::updateStatus() {
+    m_charge = false;
+    //maj de la map d'effets temporaires comme la peur
+}
+
+void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats) {
+    //creer map des regles du profil nu & completer avec les achats et option du personnage
 }

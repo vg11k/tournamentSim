@@ -65,12 +65,6 @@ const string Constants::STRING_VALUE_ACHAT_ARME_LOURDE= "arme_lourde";
 const string Constants::STRING_VALUE_ACHAT_LANCE_CAVALERIE= "lance_de_cavalerie";
 
 
-//amelio vampire
-/*const string Constants::STRING_VALUE_STRYGE= "stryge";
-const string Constants::STRING_VALUE_FORME_BESTIALE= "forme_bestiale";
-const string Constants::STRING_VALUE_HEURE_DU_LOUP="heure_du_loup";*/
-
-
 
 
 

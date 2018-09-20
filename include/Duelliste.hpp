@@ -49,7 +49,7 @@ public:
     int getCurrentHP() const;
     void setCurrentHP(int i);
 
-    void aCharge();
+    void updateStatus();
     bool charge();
 
     int getBlessuresMultiples(Duelliste * cible, int roundCounter, bool tourDeCharge);
@@ -67,6 +67,7 @@ public:
     int getSauvegardeInvulnerable();
 
     void sePresenter();
+    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
 
     typedef std::map<std::string, int>  Rules;
 
@@ -96,6 +97,8 @@ private:
     int m_invulnerable;
 
     int m_currentHP;
+
+
 
     Personnage * m_personnage;
     NakedProfile * m_nakedProfile;

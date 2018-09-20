@@ -47,5 +47,9 @@ void from_json(const Json& j, Personnage& p)
     p.setName(j.at(Constants::STRING_NAME_NOM_PERSONNAGE).get<std::string>());
 }
 
+std::vector<std::string> * Personnage::getAjout() {
+    return NULL;
+}
+
 
 

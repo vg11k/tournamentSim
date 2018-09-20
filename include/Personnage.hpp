@@ -25,6 +25,9 @@ public:
 
     Duelliste * getDuelliste();
 
+    //achats et options condensees
+    std::vector<std::string> * getAjout();
+
     /*
         check si le perso est "valide"
         ex : un vampire avec une bene imperiale ou un bretonnien avec un item vampire seront invalides
@@ -34,7 +37,6 @@ public:
 protected:
 
     std::string m_name;
-
     std::string m_type;
 
 private:
