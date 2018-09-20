@@ -8,6 +8,8 @@ ProfileManager * ProfileManager::m_me = NULL;
 ProfileManager::ProfileManager()
 {
     m_profils = new map<string, NakedProfile*>();
+    m_items = new map<string, Item*>();
+    m_options = new map<string, Option*>();
 
     DIR *dp;
     struct dirent *ep;
@@ -29,6 +31,8 @@ ProfileManager::ProfileManager()
 ProfileManager::~ProfileManager()
 {
     delete m_profils;
+    delete m_items;
+    delete m_options;
     delete m_me;
     m_me = NULL;
 }
@@ -85,4 +89,11 @@ NakedProfile * ProfileManager::getProfile(std::string type) {
          throw std::invalid_argument( string("unknown character type asked : [") + type + string("]"));
     }
     return it->second;
+}
+
+Item * ProfileManager::getItemByName(std::string itemName) {
+    if(m_items->find(itemName) == m_items->end()) {
+        throw std::invalid_argument( string("unknown item asked : [") + itemName + string("]"));
+    }
+    return m_items->at(itemName);
 }

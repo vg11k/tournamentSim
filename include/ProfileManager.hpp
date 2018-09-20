@@ -9,8 +9,8 @@
 #include <fstream>
 
 #include "NakedProfile.hpp"
-
-
+#include "Item.hpp"
+#include "Option.hpp"
 
 
 class ProfileManager
@@ -20,6 +20,7 @@ class ProfileManager
         virtual ~ProfileManager();
 
         NakedProfile * getProfile(std::string type);
+        Item * getItemByName(std::string name);
 
         typedef std::map<std::string, NakedProfile*>  ProfileMap;
 
@@ -28,12 +29,12 @@ class ProfileManager
     private:
         static ProfileManager * m_me;
         std::map<std::string, NakedProfile*> * m_profils;
+        std::map<std::string, Item*> * m_items;
+        std::map<std::string, Option*> * m_options;
 
         void loadFaction(std::string factionFolderName);
 
         ProfileManager();
-
-
 };
 
 #endif // PROFILEMANAGER_H

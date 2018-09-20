@@ -10,6 +10,10 @@ RuleContainer::RuleContainer(std::string name, int value, int turnEffect, std::v
     m_temporaryValue = 0;
 }
 
+RuleContainer::~RuleContainer() {
+    delete m_conditions;
+}
+
 void RuleContainer::setTemporatyValue(int value, int turnEffect)
 {
     m_temporaryValue = value;

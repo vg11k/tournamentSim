@@ -5,6 +5,7 @@
 
 #include "Personnage.hpp"
 #include "NakedProfile.hpp"
+#include "Item.hpp"
 
 
 class Personnage;
@@ -66,8 +67,10 @@ public:
     int getRegeneration();
     int getSauvegardeInvulnerable();
 
+    bool checkIfRuleExist(std::string ruleName, bool updateQuickAccess);
+
     void sePresenter();
-    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
+    //void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
 
     typedef std::map<std::string, int>  Rules;
 
@@ -98,7 +101,9 @@ private:
 
     int m_currentHP;
 
-
+    std::map<std::string, Item*> * m_achats;
+    std::map<std::string,int> * m_regles;
+    std::map<std::string,int> * m_quickAccess;
 
     Personnage * m_personnage;
     NakedProfile * m_nakedProfile;

@@ -73,14 +73,13 @@ void testCSVParser() {
 void testFight() {
 
     Tournament tournament;
-    vector<Personnage> * persos = tournament.getPersonnages();
+    vector<Personnage*> * persos = tournament.getPersonnages();
 
-
-    Duelliste * d1 = persos->at(0).getDuelliste();
-    Duelliste * d2 = persos->at(2).getDuelliste();
-    persos->at(0).sePresenter();
+    Duelliste * d1 = persos->at(0)->getDuelliste();
+    Duelliste * d2 = persos->at(2)->getDuelliste();
+    persos->at(0)->sePresenter();
     d1->sePresenter();
-    persos->at(2).sePresenter();
+    persos->at(2)->sePresenter();
     d2->sePresenter();
     cout << "duellistes generes" << endl;
 

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 #include "Amelioration.hpp"
 #include "RuleContainer.hpp"
@@ -13,6 +14,9 @@ class Ajout
     public:
         Ajout();
         virtual ~Ajout();
+
+        RuleContainer * getRegle(std::string ruleName);
+        std::map<std::string, RuleContainer*> * getRegles();
 
     protected:
 
@@ -26,7 +30,9 @@ class Ajout
         std::vector<std::string> * m_necessite;
 
         std::vector<Amelioration> * m_amelioration;
-        std::vector<RuleContainer> * m_regles;
+        std::map<std::string, RuleContainer*> * m_regles;
 };
+
+
 
 #endif // AJOUT_H

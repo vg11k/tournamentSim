@@ -14,13 +14,13 @@ class Tournament
         virtual ~Tournament();
 
         void makeFight(Duelliste * d1, Duelliste * d2);
-        std::vector<Personnage> * getPersonnages();
+        std::vector<Personnage*> * getPersonnages();
 
     protected:
 
     private:
 
-        std::vector<Personnage> *  m_personnages;
+        std::vector<Personnage*> *  m_personnages;
         ProfileManager * m_profileManager;
 
         std::vector<std::vector<int>*>* m_CCvsCCgrid;
@@ -43,7 +43,7 @@ class Tournament
 
 };
 
-inline std::vector<Personnage> *  Tournament::getPersonnages(){
+inline std::vector<Personnage*> *  Tournament::getPersonnages(){
     return m_personnages;
 }
 

@@ -2,10 +2,7 @@
 
 Item::Item()
 {
-    //ctor
+
 }
 
-Item::~Item()
-{
-    //dtor
-}
+Item::~Item(){}
