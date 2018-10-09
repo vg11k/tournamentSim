@@ -11,6 +11,8 @@ class Item : public Ajout
         Item();
         virtual ~Item();
 
+        Ajout * Clone() const;
+
     protected:
 
     private:

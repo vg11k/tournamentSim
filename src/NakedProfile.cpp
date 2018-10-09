@@ -8,6 +8,7 @@ NakedProfile::NakedProfile()
     m_winningStats = new map<string, int>();
     m_losingStats = new map<string, int>();
     m_regles = new map<string, int>();
+    m_catalogueAchats = new map<string, int>();
 }
 
 NakedProfile::~NakedProfile()
@@ -15,6 +16,7 @@ NakedProfile::~NakedProfile()
     delete m_winningStats;
     delete m_losingStats;
     delete m_regles;
+    delete m_catalogueAchats;
 }
 
 void NakedProfile::retrieveFrom(NakedProfile & original)
@@ -48,6 +50,12 @@ void NakedProfile::addRegle(nlohmann::json& j) {
     string name = j[Constants::STRING_NAME_NOM_REGLE];
     int value = j[Constants::STRING_NAME_VALEUR_REGLE];
     m_regles->insert(pair<string,int>(name, value));
+}
+
+void NakedProfile::addAchatPossible(nlohmann::json& j) {
+    string name = j[Constants::STRING_NAME_NOM_ACHAT];
+    int prix = j[Constants::STRING_NAME_VALEUR_ACHATS];
+    m_catalogueAchats->insert(pair<string,int>(name, prix));
 }
 
 void NakedProfile::setRegles(std::vector<nlohmann::json>& j)
@@ -156,6 +164,11 @@ void from_json(const Json& j, NakedProfile& p)
         p.addRegle(data[i]);
     }
 
+    data = j[Constants::STRING_NAME_ACHATS];
+    for(unsigned int i = 0; i < data.size(); i++)
+    {
+        p.addAchatPossible(data[i]);
+    }
 
     /*m_regles->clear();
     for ( Json::iterator it = j.begin(); it != j.end(); ++it) {

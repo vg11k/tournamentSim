@@ -51,6 +51,11 @@ public:
     static const std::string STRING_NAME_VALEUR_REGLE;
     static const std::string STRING_NAME_VALEUR_ACHATS;
 
+    static const std::string STRING_NAME_REGLE_AMELIORATION_CAPACITE_COMBAT;
+    static const std::string STRING_NAME_REGLE_ATTAQUES;
+    static const std::string STRING_NAME_REGLE_POINTS_DE_VIE;
+    static const std::string STRING_NAME_REGLE_ENDURANCE;
+
 
 
     static const std::string STRING_VALUE_REGLE_MORTVIVANT;

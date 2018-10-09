@@ -8,6 +8,7 @@ ProfileManager * ProfileManager::m_me = NULL;
 ProfileManager::ProfileManager()
 {
     m_profils = new map<string, NakedProfile*>();
+    m_factory = new FactoryAjout();
 
     DIR *dp;
     struct dirent *ep;
@@ -29,6 +30,7 @@ ProfileManager::ProfileManager()
 ProfileManager::~ProfileManager()
 {
     delete m_profils;
+    delete m_factory;
     delete m_me;
     m_me = NULL;
 }
@@ -85,4 +87,8 @@ NakedProfile * ProfileManager::getProfile(std::string type) {
          throw std::invalid_argument( string("unknown character type asked : [") + type + string("]"));
     }
     return it->second;
+}
+
+Ajout * ProfileManager::getAjout(const std::string& name) {
+    Ajout * ajout = m_factory->Create(name);
 }

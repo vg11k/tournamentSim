@@ -11,7 +11,7 @@ class Duelliste;
 class Personnage
 {
 public:
-    Personnage() {};
+    Personnage();
     Personnage(nlohmann::json jsonContainer);
     virtual ~Personnage();
 
@@ -34,10 +34,16 @@ public:
     */
     bool areYouValid();
 
+    void addAchat(const std::string nomAchat);
+    void addOption(const std::string nomOption);
+
 protected:
 
     std::string m_name;
     std::string m_type;
+
+    std::vector<std::string> * m_achats;
+    std::vector<std::string> * m_options;
 
 private:
 };

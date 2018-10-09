@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Amelioration.hpp"
 #include "RuleContainer.hpp"
 
 
@@ -13,6 +12,7 @@ class Ajout
     public:
         Ajout();
         virtual ~Ajout();
+        virtual Ajout* Clone() const  = 0;
 
     protected:
 
@@ -25,7 +25,6 @@ class Ajout
         std::vector<std::string> * m_incompatibilite;
         std::vector<std::string> * m_necessite;
 
-        std::vector<Amelioration> * m_amelioration;
         std::vector<RuleContainer> * m_regles;
 };
 

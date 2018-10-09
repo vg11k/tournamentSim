@@ -12,6 +12,7 @@ class Option : public Ajout
     public:
         Option();
         virtual ~Option();
+        Ajout * Clone() const;
 
     protected:
 

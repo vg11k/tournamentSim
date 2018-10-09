@@ -36,6 +36,7 @@ public:
     void setRegles(std::map<std::string, int> * r);
     void setRegles(std::vector<nlohmann::json>& j);
     void addRegle(nlohmann::json& j);
+    void addAchatPossible(nlohmann::json& j);
 
     std::map<std::string, int> * getRegles() const;
     void setFaction(std::string s);
@@ -72,6 +73,8 @@ private:
     int m_profilId;
     std::map<std::string, int> * m_winningStats;
     std::map<std::string, int> * m_losingStats;
+
+    std::map<std::string, int> * m_catalogueAchats;
 };
 
 void to_json(nlohmann::json& j, const NakedProfile& p);

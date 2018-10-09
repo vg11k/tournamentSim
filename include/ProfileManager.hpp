@@ -9,6 +9,7 @@
 #include <fstream>
 
 #include "NakedProfile.hpp"
+#include "FactoryAjout.hpp"
 
 
 
@@ -20,6 +21,7 @@ class ProfileManager
         virtual ~ProfileManager();
 
         NakedProfile * getProfile(std::string type);
+        Ajout * getAjout(const std::string& name);
 
         typedef std::map<std::string, NakedProfile*>  ProfileMap;
 
@@ -28,12 +30,11 @@ class ProfileManager
     private:
         static ProfileManager * m_me;
         std::map<std::string, NakedProfile*> * m_profils;
+        FactoryAjout * m_factory;
 
         void loadFaction(std::string factionFolderName);
 
         ProfileManager();
-
-
 };
 
 #endif // PROFILEMANAGER_H

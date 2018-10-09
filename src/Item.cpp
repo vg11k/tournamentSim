@@ -9,3 +9,7 @@ Item::~Item()
 {
     //dtor
 }
+
+Ajout * Item::Clone() const {
+    return (new Item(*this));
+}

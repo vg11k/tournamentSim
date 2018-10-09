@@ -134,7 +134,7 @@
 					"valeur_achat": 110
 				},
 				{
-					"nom_achat": "monture_squelette",
+					"nom_achat": "horreur_ailee",
 					"valeur_achat": 260
 				}
 			]
@@ -226,13 +226,12 @@
 					"valeur_achat": 0
 				}
 			],
-			"ameliorations": [
+			"ajout_regles":[
 				{
-						"nom_caracteristique": "capacite_combat",
-						"valeur_amelioration": 2
+					"nom_regle": "amelioration_capacite_combat",
+					"valeur_regle": 2
 				}
-			],
-			"ajout_regles":[]
+			]
 		},
 		{
 			"nom_option": "rage_ecarlate",
@@ -241,7 +240,6 @@
 			"incompatibilite": ["von_carstein", "lahmian", "stryge"],
 			"necessite": ["dragon_sang"],
 			"achats_additionnels": [],
-			"ameliorations":[],
 			"ajout_regles":[
 				{
 					"nom_regle": "blessure_genere_blessure",
@@ -256,7 +254,6 @@
 			"incompatibilite": ["von_carstein", "lahmian", "stryge"],
 			"necessite": [],
 			"achats_additionnels": [],
-			"ameliorations":[],
 			"ajout_regles":[
 				{
 					"nom_regle": "relance_touche",
@@ -296,7 +293,6 @@
 					"valeur_achat": 0
 				}
 			],
-			"ameliorations":[],
 			"ajout_regles":[ 
 				{
 					"nom_regle": "coup_fatal",
@@ -311,7 +307,6 @@
 			"incompatibilite": ["dragon_sang", "lahmian", "stryge"],
 			"necessite": [],
 			"achats_additionnels": [],
-			"ameliorations":[],
 			"ajout_regles":[
 				{
 					"nom_regle": "peur_de_additionnel",
@@ -326,7 +321,6 @@
 			"incompatibilite": ["dragon_sang", "lahmian", "stryge"],
 			"necessite": ["von_carstein"],
 			"achats_additionnels":[],
-			"ameliorations":[],
 			"ajout_regles": [
 				{
 					"nom_regle": "peur_resultat_bride",
@@ -341,7 +335,6 @@
 			"incompatibilite": ["dragon_sang","lahmian","stryge"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations":[],
 			"ajout_regles": [
 				{
 					"nom_regle": "distrayant",
@@ -356,7 +349,6 @@
 			"incompatibilite": ["dragon_sang","lahmian","stryge"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations":[],
 			"ajout_regles": [
 				{
 					"nom_regle": "vampirique",
@@ -371,13 +363,11 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "stryge"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations":[
-				{
-					"nom_caracteristique": "attaques",
-					"valeur_amelioration": -1
-				}
-			],
 			"ajout_regles": [
+				{
+					"nom_regle": "amelioration_attaques",
+					"valeur_regle": -1
+				},
 				{
 					"nom_regle": "reflexe_foudroyant",
 					"valeur_regle": 1
@@ -399,7 +389,6 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "stryge"],
 			"necessite": ["lahmian"],
 			"achats_additionnels":[],
-			"ameliorations": [],
 			"ajout_regles": [
 				{
 					"nom_regle": "autorite",
@@ -414,7 +403,6 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "stryge"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations": [],
 			"ajout_regles": [
 				{
 					"nom_regle": "baisse_commandement_ennemi",
@@ -429,7 +417,6 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "stryge"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations": [],
 			"ajout_regles": [
 				{
 					"nom_regle": "ennemi_relance_peur",
@@ -444,13 +431,11 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "lahmian", "armure", "monture"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations": [
-				{
-					"nom_caracteristique": "points_de_vie",
-					"valeur_amelioration": 1
-				}
-			],
 			"ajout_regles": [
+				{
+					"nom_regle": "amelioration_points_de_vie",
+					"valeur_regle": 1
+				},
 				{
 					"nom_regle": "haine",
 					"valeur_regle": 1
@@ -468,13 +453,11 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "lahmian", "arme_magique"],
 			"necessite": ["stryge"],
 			"achats_additionnels":[],
-			"ameliorations": [
-				{
-					"nom_caracteristique": "endurance",
-					"valeur_amelioration": 1
-				}
-			],
 			"ajout_regles": [
+				{
+					"nom_regle": "amelioration_endurance",
+					"valeur_regle": 1
+				},
 				{
 					"nom_regle": "regeneration",
 					"valeur_regle": 4
@@ -496,7 +479,6 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "lahmian"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations": [],
 			"ajout_regles": [
 				{
 					"nom_regle": "regeneration",
@@ -515,7 +497,6 @@
 			"incompatibilite": ["dragon_sang", "von_carstein", "lahmian"],
 			"necessite": [],
 			"achats_additionnels":[],
-			"ameliorations": [],
 			"ajout_regles": [
 				{
 					"nom_regle": "attaques_empoisonnees",

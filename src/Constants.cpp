@@ -31,7 +31,6 @@ const string Constants::STRING_NAME_NOM_PERSONNAGE= "nom_personnage";
 const string Constants::STRING_NAME_ACHATS= "achats";
 const string Constants::STRING_NAME_OPTIONS= "options";
 const string Constants::STRING_NAME_REGLES= "regles";
-const string Constants::STRING_NAME_AMELIORATIONS= "ameliorations";
 const string Constants::STRING_NAME_ACHATS_ADDITIONNELS= "achats_additionnels";
 const string Constants::STRING_NAME_PROFILS_ELIGIBLES= "profils_eligibles";
 const string Constants::STRING_NAME_NECESSITE= "necessite";
@@ -44,6 +43,11 @@ const string Constants::STRING_NAME_NOM_CARACTERISTIQUE= "nom_caracteristique";
 
 const string Constants::STRING_NAME_VALEUR_REGLE= "valeur_regle";
 const string Constants::STRING_NAME_VALEUR_ACHATS= "valeur_achat";
+
+const string Constants::STRING_NAME_REGLE_AMELIORATION_CAPACITE_COMBAT="amelioration_capacite_combat";
+const string Constants::STRING_NAME_REGLE_ATTAQUES="amelioration_attaques";
+const string Constants::STRING_NAME_REGLE_POINTS_DE_VIE="amelioration_points_de_vie";
+const string Constants::STRING_NAME_REGLE_ENDURANCE="amelioration_endurance";
 
 
 

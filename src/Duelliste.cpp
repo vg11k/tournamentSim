@@ -17,9 +17,8 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setCommandement(profil->getCommandement());
     setPrix(profil->getPrix());
 
+    m_rules = new Rules();
     completer(profil->getRegles(), personnage->getAjout());
-    //setFaction(profil->getFaction());
-    setFaction("toto");
     setCurrentHP(getPointsDeVie());
 
     m_regeneration = 999;
@@ -126,6 +125,15 @@ void Duelliste::updateStatus() {
     //maj de la map d'effets temporaires comme la peur
 }
 
-void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats) {
+void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * ajoutNames) {
     //creer map des regles du profil nu & completer avec les achats et option du personnage
+
+    for(Rules::iterator it = reglesProfil->begin(); it != reglesProfil->end(); ++it) {
+        m_rules->insert(pair<string,int>(it->first, it->second));
+    }
+
+    ProfileManager * manager = ProfileManager::getMe();
+    for(int i = 0; i < ajoutNames->size(); i++) {
+        Ajout * ajout =  manager->getAjout(ajoutNames->at(i));
+    }
 }

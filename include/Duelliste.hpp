@@ -5,6 +5,7 @@
 
 #include "Personnage.hpp"
 #include "NakedProfile.hpp"
+#include "Ajout.hpp"
 
 
 class Personnage;
@@ -67,7 +68,7 @@ public:
     int getSauvegardeInvulnerable();
 
     void sePresenter();
-    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
+    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * ajoutNames);
 
     typedef std::map<std::string, int>  Rules;
 
@@ -97,6 +98,8 @@ private:
     int m_invulnerable;
 
     int m_currentHP;
+    Rules * m_rules;
+
 
 
 

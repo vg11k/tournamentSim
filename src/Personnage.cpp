@@ -3,11 +3,35 @@
 using namespace std;
 using Json = nlohmann::json;
 
+Personnage::Personnage() {
+    m_achats = new vector<string>();
+    m_options = new vector<string>();
+}
 
 Personnage::Personnage(Json jsonContainer)
 {
     m_type = jsonContainer[Constants::STRING_NAME_TYPE_PROFIL];
     m_name = jsonContainer[Constants::STRING_NAME_NOM_PERSONNAGE];
+
+    m_achats = new vector<string>();
+    m_options = new vector<string>();
+
+    nlohmann::json data = jsonContainer[Constants::STRING_NAME_ACHATS];
+    for(unsigned int i = 0; i < data.size(); i++)
+    {
+
+        string nomAchat = data[i];
+        cout << "ajout de l'achat " << nomAchat <<endl;
+        addAchat(nomAchat);
+    }
+
+    data = jsonContainer[Constants::STRING_NAME_OPTIONS];
+    for(unsigned int i = 0; i < data.size(); i++)
+    {
+        string nomOption = data[i];
+        cout << "ajout de l'option " << nomOption <<endl;
+        addOption(nomOption);
+    }
 }
 
 Personnage::~Personnage()
@@ -45,11 +69,38 @@ void from_json(const Json& j, Personnage& p)
 {
     p.setType(j.at(Constants::STRING_NAME_TYPE_PROFIL).get<std::string>());
     p.setName(j.at(Constants::STRING_NAME_NOM_PERSONNAGE).get<std::string>());
+
+    nlohmann::json data = j[Constants::STRING_NAME_ACHATS];
+    for(unsigned int i = 0; i < data.size(); i++)
+    {
+
+        string nomAchat = data[i];
+        cout << "ajout de l'achat " << nomAchat <<endl;
+        p.addAchat(nomAchat);
+    }
+
+    data = j[Constants::STRING_NAME_OPTIONS];
+    for(unsigned int i = 0; i < data.size(); i++)
+    {
+        string nomOption = data[i];
+        cout << "ajout de l'option " << nomOption <<endl;
+        p.addOption(nomOption);
+    }
+
 }
 
 std::vector<std::string> * Personnage::getAjout() {
-    return NULL;
+    std::vector<std::string> * ajouts = new std::vector<std::string>();
+    ajouts->insert( ajouts->end(), m_achats->begin(), m_achats->end() );
+    ajouts->insert( ajouts->end(), m_options->begin(), m_options->end() );
+    return ajouts;
 }
 
+void Personnage::addAchat(const string nomAchat) {
+    m_achats->push_back(nomAchat);
+}
 
+void Personnage::addOption(const string nomOption) {
+    m_options->push_back(nomOption);
+}
 
