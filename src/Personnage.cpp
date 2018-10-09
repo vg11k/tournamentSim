@@ -10,6 +10,7 @@ Personnage::Personnage() {
 
 Personnage::Personnage(Json jsonContainer)
 {
+
     m_type = jsonContainer[Constants::STRING_NAME_TYPE_PROFIL];
     m_name = jsonContainer[Constants::STRING_NAME_NOM_PERSONNAGE];
 
@@ -34,9 +35,25 @@ Personnage::Personnage(Json jsonContainer)
     }
 }
 
+void Personnage::recopy(Personnage &p) {
+    m_type = p.getType();
+    m_name = p.getName();
+
+    std::vector<std::string> * achats = p.m_achats;
+    for(unsigned int i = 0; i < m_achats->size(); i++) {
+        m_achats->push_back(achats->at(i));
+    }
+
+    std::vector<std::string> * options = p.m_options;
+    for(unsigned int i = 0; i < m_options->size(); i++) {
+        m_options->push_back(options->at(i));
+    }
+}
+
 Personnage::~Personnage()
 {
-    //dtor
+    delete m_achats;
+    delete m_options;
 }
 
 void Personnage::sePresenter() {
@@ -49,6 +66,7 @@ Duelliste * Personnage::getDuelliste() {
     NakedProfile * nakedProfile = manager->getProfile(getType());
     Duelliste * duelliste = new Duelliste(nakedProfile, this);
     duelliste->setFaction(nakedProfile->getFaction());
+
     return duelliste;
 }
 

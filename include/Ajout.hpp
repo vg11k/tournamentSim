@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 #include "RuleContainer.hpp"
 
@@ -13,6 +14,9 @@ class Ajout
         Ajout();
         virtual ~Ajout();
         virtual Ajout* Clone() const  = 0;
+
+        RuleContainer * getRegle(std::string ruleName);
+        std::map<std::string, RuleContainer*> * getRegles();
 
     protected:
 
@@ -25,7 +29,9 @@ class Ajout
         std::vector<std::string> * m_incompatibilite;
         std::vector<std::string> * m_necessite;
 
-        std::vector<RuleContainer> * m_regles;
+        std::map<std::string, RuleContainer*> * m_regles;
 };
+
+
 
 #endif // AJOUT_H

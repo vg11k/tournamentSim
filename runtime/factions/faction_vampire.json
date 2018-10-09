@@ -242,7 +242,7 @@
 			"achats_additionnels": [],
 			"ajout_regles":[
 				{
-					"nom_regle": "blessure_genere_blessure",
+					"nom_regle": "blessure_genere_attaque",
 					"valeur_regle": 1
 				}
 			]

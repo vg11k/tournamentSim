@@ -49,14 +49,30 @@ const string Constants::STRING_NAME_REGLE_ATTAQUES="amelioration_attaques";
 const string Constants::STRING_NAME_REGLE_POINTS_DE_VIE="amelioration_points_de_vie";
 const string Constants::STRING_NAME_REGLE_ENDURANCE="amelioration_endurance";
 
-
-
 const string Constants::STRING_VALUE_REGLE_MORTVIVANT= "mort-vivant";
 const string Constants::STRING_VALUE_REGLE_ATTAQUES_MAGIQUES= "attaques_magiques";
 const string Constants::STRING_VALUE_REGLE_COUP_FATAL= "coup_fatal";
 const string Constants::STRING_VALUE_REGLE_BLESSURES_MULTIPLES= "blessures_multiples";
 const string Constants::STRING_VALUE_REGLE_VAMPIRIQUE= "vampirique";
 const string Constants::STRING_VALUE_REGLE_PEUR= "peur";
+const string Constants::STRING_VALUE_REGLE_REGENERATION= "regeneration";
+const string STRING_VALUE_REGLE_PIETINEMENT= "pietinement";
+const string STRING_VALUE_REGLE_BLESSURE_GENERE_ATTAQUE="blessure_genere_attaque";
+const string STRING_VALUE_REGLE_RELANCE_TOUCHE="relance_touche";
+const string STRING_VALUE_REGLE_PEUR_DE_ADDITIONNEL="peur_de_additionnel";
+const string STRING_VALUE_REGLE_PEUR_RESULTAT_BRIDE="peur_resultat_bride";
+const string STRING_VALUE_REGLE_DISTRAYANT="distrayant";
+const string STRING_VALUE_REGLE_REFLEXE_FOUDROYANT="reflexe_foudroyant";
+const string STRING_VALUE_REGLE_SEDUCTION="seduction";
+const string STRING_VALUE_REGLE_DISTRAYANT_CONDITIONNE="distrayant_conditionne";
+const string STRING_VALUE_REGLE_AUTORITE="autorite";
+const string STRING_VALUE_REGLE_BAISSE_COMMANDEMENT_ENNEMI="baisse_commandement_ennemi";
+const string STRING_VALUE_REGLE_ENNEMI_RELANCE_PEUR="ennemi_relance_peur";
+const string STRING_VALUE_REGLE_HAINE="haine";
+const string STRING_VALUE_REGLE_INFANTERIE_MONSTRUEUSE="infanterie_monstrueuse";
+const string STRING_VALUE_REGLE_REGENERATION_AMELIOREE="regeneration_amelioree";
+const string STRING_VALUE_REGLE_ATTAQUES_EMPOISONNEES="attaques_empoisonnees";
+const string STRING_VALUE_REGLE_PERFORANT="perforant";
 
 //equipement commun
 const string Constants::STRING_VALUE_ACHAT_OBJET_MAGIQUE= "objets_magique";

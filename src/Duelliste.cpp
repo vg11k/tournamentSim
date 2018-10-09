@@ -17,9 +17,23 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setCommandement(profil->getCommandement());
     setPrix(profil->getPrix());
 
-    m_rules = new Rules();
-    completer(profil->getRegles(), personnage->getAjout());
-    setCurrentHP(getPointsDeVie());
+m_rules = new Rules();
+    completer(profil->getRegles(), personnage->getAjout());setFaction(profil->getFaction());    setCurrentHP(getPointsDeVie());
+
+    m_quickAccess = new std::map<std::string,int>();
+
+    m_regles = new std::map<std::string,int>();
+    std::map<std::string,int> * tmpMap = profil->getRegles();
+    for(Rules::iterator it = tmpMap->begin(); it != tmpMap->end(); ++it)
+    {
+        string key = it->first; // accede à la clé
+        int value = it->second; // accede à la valeur
+        m_regles->insert(pair<string,int>(key, value));
+    }
+
+    m_achats = new std::map<std::string, Item*>();
+
+
 
     m_regeneration = 999;
     m_invulnerable = 999;
@@ -28,7 +42,8 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
 
 Duelliste::~Duelliste()
 {
-    //dtor
+    delete m_quickAccess;
+    delete m_regles;
 }
 
 
@@ -63,7 +78,6 @@ std::string Duelliste::getType() const
 }
 
 
-
 bool Duelliste::utiliseAttaquesEnflammees() {
     return m_utiliseAttaquesEnflammees;
 }
@@ -72,8 +86,36 @@ bool Duelliste::utiliseAttaquesDivines() {
 }
 
 bool Duelliste::beneficieRegeneration() {
-    return m_regeneration != 999;
+    return checkIfRuleExist(Constants::STRING_VALUE_REGLE_REGENERATION, true);
 }
+
+bool Duelliste::checkIfRuleExist(string ruleName, bool updateQuickAccess) {
+    bool found = false;
+    int value = -1;
+    if(m_regles->find(ruleName) != m_regles->end()) {
+        found =  true;
+        value = m_regles->at(ruleName);
+    }
+
+    for(map<string, Item*>::iterator it = m_achats->begin(); it != m_achats->end(); ++it)
+    {
+        Item * itemFound = it->second;
+        if(itemFound->getRegles()->find(ruleName) != itemFound->getRegles()->end()) {
+            found =  true;
+            value = itemFound->getRegle(ruleName)->getCurrentValue();
+        }
+    }
+    if(updateQuickAccess) {
+        if(found) {
+            m_quickAccess->insert(pair<string,int>(ruleName, value));
+        }
+        else if(m_quickAccess->find(ruleName) != m_quickAccess->end()){
+            m_quickAccess->erase(ruleName);
+        }
+    }
+    return found;
+}
+
 bool Duelliste::beneficieInvulnerabilite() {
     return m_invulnerable != 999;
 }
@@ -124,6 +166,7 @@ void Duelliste::updateStatus() {
     m_charge = false;
     //maj de la map d'effets temporaires comme la peur
 }
+
 
 void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * ajoutNames) {
     //creer map des regles du profil nu & completer avec les achats et option du personnage

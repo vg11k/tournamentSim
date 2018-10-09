@@ -4,7 +4,18 @@
 #include <iostream>
 #include <vector>
 
-struct RuleContainer {
+class RuleContainer {
+
+public:
+
+    RuleContainer(std::string name, int value, int turnEffect, std::vector<std::string> * conditions);
+    virtual ~RuleContainer();
+
+    void setTemporatyValue(int value, int turnEffect);
+    int getCurrentValue();
+    bool isEffective();
+
+private:
 
     std::string m_ruleName;
     std::vector<std::string> * m_conditions;
@@ -17,10 +28,6 @@ struct RuleContainer {
     int m_temporaryTurnEffect;
     int m_temporaryValue;
 
-    RuleContainer(std::string name, int value, int turnEffect, std::vector<std::string> * conditions);
-    void setTemporatyValue(int value, int turnEffect);
-    int getCurrentValue();
-    bool isEffective();
 
 };
 

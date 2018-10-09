@@ -7,7 +7,6 @@
 #include "NakedProfile.hpp"
 #include "Ajout.hpp"
 
-
 class Personnage;
 
 class Duelliste
@@ -67,9 +66,10 @@ public:
     int getRegeneration();
     int getSauvegardeInvulnerable();
 
-    void sePresenter();
-    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * ajoutNames);
+    bool checkIfRuleExist(std::string ruleName, bool updateQuickAccess);
 
+    void sePresenter();
+    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
     typedef std::map<std::string, int>  Rules;
 
 protected:
@@ -100,7 +100,9 @@ private:
     int m_currentHP;
     Rules * m_rules;
 
-
+    std::map<std::string, Item*> * m_achats;
+    std::map<std::string,int> * m_regles;
+    std::map<std::string,int> * m_quickAccess;
 
 
     Personnage * m_personnage;

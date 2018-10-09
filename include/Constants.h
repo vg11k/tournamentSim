@@ -64,6 +64,24 @@ public:
     static const std::string STRING_VALUE_REGLE_BLESSURES_MULTIPLES;
     static const std::string STRING_VALUE_REGLE_VAMPIRIQUE;
     static const std::string STRING_VALUE_REGLE_PEUR;
+    static const std::string STRING_VALUE_REGLE_REGENERATION;
+    static const std::string STRING_VALUE_REGLE_PIETINEMENT;
+    static const std::string STRING_VALUE_REGLE_BLESSURE_GENERE_ATTAQUE;
+    static const std::string STRING_VALUE_REGLE_RELANCE_TOUCHE;
+    static const std::string STRING_VALUE_REGLE_PEUR_DE_ADDITIONNEL;
+    static const std::string STRING_VALUE_REGLE_PEUR_RESULTAT_BRIDE;
+    static const std::string STRING_VALUE_REGLE_DISTRAYANT;
+    static const std::string STRING_VALUE_REGLE_REFLEXE_FOUDROYANT;
+    static const std::string STRING_VALUE_REGLE_SEDUCTION;
+    static const std::string STRING_VALUE_REGLE_DISTRAYANT_CONDITIONNE;
+    static const std::string STRING_VALUE_REGLE_AUTORITE;
+    static const std::string STRING_VALUE_REGLE_BAISSE_COMMANDEMENT_ENNEMI;
+    static const std::string STRING_VALUE_REGLE_ENNEMI_RELANCE_PEUR;
+    static const std::string STRING_VALUE_REGLE_HAINE;
+    static const std::string STRING_VALUE_REGLE_INFANTERIE_MONSTRUEUSE;
+    static const std::string STRING_VALUE_REGLE_REGENERATION_AMELIOREE;
+    static const std::string STRING_VALUE_REGLE_ATTAQUES_EMPOISONNEES;
+    static const std::string STRING_VALUE_REGLE_PERFORANT;
 
 //equipement commun
     static const std::string STRING_VALUE_ACHAT_OBJET_MAGIQUE;

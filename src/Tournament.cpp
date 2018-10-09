@@ -18,14 +18,16 @@ Tournament::Tournament()
 
 
     int nbPersonnages = jsonObject[Constants::STRING_NAME_PERSONNAGES].size();
-    m_personnages = new vector<Personnage>();
+    m_personnages = new vector<Personnage*>();
     for(int i = 0; i < nbPersonnages; i++)
     {
         Json jPersonnage  = jsonObject[Constants::STRING_NAME_PERSONNAGES][i];
         Personnage p = jPersonnage;
         if(p.areYouValid())
         {
-            m_personnages->push_back(p);
+            Personnage * pointerP = new Personnage();
+            pointerP->recopy(p);
+            m_personnages->push_back(pointerP);
         }
     }
 
