@@ -17,20 +17,22 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setCommandement(profil->getCommandement());
     setPrix(profil->getPrix());
 
-    m_rules = new Rules();
-    completer(profil->getRegles(), personnage->getAjout());
+    m_rules = new RuleContainers();
+    completer(profil->getRegles(), personnage->getOptions(), personnage->getAchats());
     setFaction(profil->getFaction());
     setCurrentHP(getPointsDeVie());
 
     m_quickAccess = new std::map<std::string,int>();
 
-    m_regles = new std::map<std::string,int>();
+    FactoryRules ruleFactory;
+
     std::map<std::string,int> * tmpMap = profil->getRegles();
-    for(Rules::iterator it = tmpMap->begin(); it != tmpMap->end(); ++it)
+    for(std::map<std::string,int>::iterator it = tmpMap->begin(); it != tmpMap->end(); ++it)
     {
         string key = it->first; // accede à la clé
         int value = it->second; // accede à la valeur
-        m_regles->insert(pair<string,int>(key, value));
+        RuleContainer * rule = ruleFactory.getSubRules(key, value);
+        m_rules->insert(pair<string,RuleContainer*>(key, rule));
     }
 
     FactoryAjout factory;
@@ -38,6 +40,7 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
 
     m_achats = new std::vector<Item*>();
     vector<string> * achats = personnage->getAchats();
+
     for(vector<string>::iterator it = achats->begin(); it != achats->end(); ++it) {
         m_achats->push_back((Item*)factory.Create(*it));
     }
@@ -51,8 +54,8 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
 Duelliste::~Duelliste()
 {
     delete m_quickAccess;
-    delete m_regles;
     delete m_achats;
+    delete m_rules;
 }
 
 
@@ -101,9 +104,9 @@ bool Duelliste::beneficieRegeneration() {
 bool Duelliste::checkIfRuleExist(string ruleName, bool updateQuickAccess) {
     bool found = false;
     int value = -1;
-    if(m_regles->find(ruleName) != m_regles->end()) {
+    if(m_rules->find(ruleName) != m_rules->end()) {
         found =  true;
-        value = m_regles->at(ruleName);
+        value = m_rules->at(ruleName)->getCurrentValue();
     }
 
     for(vector<Item*>::iterator it = m_achats->begin(); it != m_achats->end(); ++it)
@@ -160,7 +163,7 @@ void Duelliste::sePresenter() {
     std::cout << "J'ai " << m_capacite_combat << " de CC et " << m_force << " en force" << std::endl;
     std::cout << "Voici mes regles : ";
 
-    for(Rules::iterator it = getNakedProfile()->getRegles()->begin() ; it!= getNakedProfile()->getRegles()->end() ; ++it)
+    for(map<string,int>::iterator it = getNakedProfile()->getRegles()->begin() ; it!= getNakedProfile()->getRegles()->end() ; ++it)
     {
             std::cout << it->first  << " ";
     }
@@ -177,31 +180,99 @@ void Duelliste::updateStatus() {
 }
 
 
-void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * ajoutNames) {
+void Duelliste::completer(std::map<std::string,int> * reglesProfil,
+                          std::vector<std::string> * nameOptions,
+                          std::vector<std::string> * nameAchats) {
     //creer map des regles du profil nu & completer avec les achats et option du personnage
+    FactoryRules factory;
 
-    for(Rules::iterator it = reglesProfil->begin(); it != reglesProfil->end(); ++it) {
-        m_rules->insert(pair<string,int>(it->first, it->second));
-    }
-
-    ProfileManager * manager = ProfileManager::getMe();
-    for(int i = 0; i < ajoutNames->size(); i++) {
-        Ajout * ajout =  manager->getAjout(ajoutNames->at(i));
+    for(std::map<std::string,int>::iterator it = reglesProfil->begin(); it != reglesProfil->end(); ++it) {
+        RuleContainer * rule = factory.getSubRules(it->first, it->second);
+        m_rules->insert(pair<string,RuleContainer*>(it->first, rule));
     }
 }
 
 int Duelliste::getInitiative() const {
     int initiative = m_initiative;
 
-    Rules::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
+    int changementInit = -1;
+    int ameliorationInit = 0;
+
+    //checker les passifs de base et options du profil
+    RuleContainers::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
     if(it != m_rules->end()) {
-        initiative += it->second;
+        ameliorationInit += it->second->getCurrentValue();
     }
 
     it = m_rules->find(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
     if(it != m_rules->end()) {
-        initiative = it->second;
+        changementInit = it->second->getCurrentValue();
     }
 
+    //checker les items du personnage
+    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
+
+        Item * item = *itemIt;
+        RuleContainers * reglesItem = item->getRegles();
+
+        it = reglesItem->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
+        if(it != reglesItem->end()) {
+            ameliorationInit += it->second->getCurrentValue();
+        }
+
+        it = reglesItem->find(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
+        if(it != reglesItem->end()) {
+            changementInit = it->second->getCurrentValue();
+        }
+    }
+    if(changementInit != -1) {
+        initiative = changementInit;
+    }
+    else {
+        initiative += ameliorationInit;
+    }
     return initiative;
+}
+
+
+int Duelliste::getForce() const {
+    int force = m_force;
+
+    int changementForce = -1;
+    int ameliorationForce = 0;
+
+    //checker les passifs de base et options du profil
+    RuleContainers::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE);
+    if(it != m_rules->end()) {
+        ameliorationForce += it->second->getCurrentValue();
+    }
+
+    it = m_rules->find(Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
+    if(it != m_rules->end()) {
+        changementForce = it->second->getCurrentValue();
+    }
+
+    //checker les items du personnage
+    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
+
+        Item * item = *itemIt;
+        RuleContainers * reglesItem = item->getRegles();
+
+        it = reglesItem->find(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE);
+        if(it != reglesItem->end()) {
+            ameliorationForce += it->second->getCurrentValue();
+        }
+
+        it = reglesItem->find(Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
+        if(it != reglesItem->end()) {
+            changementForce = it->second->getCurrentValue();
+        }
+    }
+    if(changementForce != -1) {
+        force = changementForce;
+    }
+    else {
+        force += ameliorationForce;
+    }
+    return force;
 }

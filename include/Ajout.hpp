@@ -20,6 +20,8 @@ class Ajout
         void addIncompatibilite(std::string incompatibilite);
         std::map<std::string, RuleContainer*> * getRegles();
 
+        std::string getName();
+
     protected:
 
     private:
@@ -34,6 +36,9 @@ class Ajout
         std::map<std::string, RuleContainer*> * m_regles;
 };
 
+inline std::string Ajout::getName() {
+    return m_name;
+}
 
 
 #endif // AJOUT_H

@@ -6,6 +6,8 @@
 #include "Personnage.hpp"
 #include "NakedProfile.hpp"
 #include "Ajout.hpp"
+#include "FactoryRules.hpp"
+#include "RuleContainer.hpp"
 
 class Personnage;
 
@@ -69,8 +71,8 @@ public:
     bool checkIfRuleExist(std::string ruleName, bool updateQuickAccess);
 
     void sePresenter();
-    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * achats);
-    typedef std::map<std::string, int>  Rules;
+    void completer(std::map<std::string,int> * reglesProfil, std::vector<std::string> * options, std::vector<std::string> * achats);
+    typedef std::map<std::string, RuleContainer*>  RuleContainers;
 
 protected:
 
@@ -98,10 +100,10 @@ private:
     int m_invulnerable;
 
     int m_currentHP;
-    Rules * m_rules;
+    RuleContainers * m_rules;
 
     std::vector<Item*> * m_achats;
-    std::map<std::string,int> * m_regles;
+    //std::map<std::string,int> * m_regles;
     std::map<std::string,int> * m_quickAccess;
 
 
@@ -125,9 +127,6 @@ inline int Duelliste::getCapaciteTir() const {
 }
 inline void Duelliste::setForce(int i) {
     m_force = i;
-}
-inline int Duelliste::getForce() const {
-    return m_force;
 }
 inline void Duelliste::setEndurance(int i) {
     m_endurance = i;

@@ -15,7 +15,7 @@
 			"prix": 200,
 			"regles": [
 				{
-					"nom_regle" : "mort-vivant",
+					"nom_regle" : "immunise_psychologie",
 					"valeur_regle" : 1
 				},
 				{
@@ -23,8 +23,8 @@
 					"valeur_regle" : 1
 				},
 				{
-					"nom_regle" : "coup_fatal",
-					"valeur_regle" : 1
+					"nom_regle" : "perforant",
+					"valeur_regle" : 6
 				},
 				{
 					"nom_regle" : "blessures_multiples",
@@ -84,7 +84,7 @@
 					"valeur_regle": 6
 				},
 				{
-					"nom_regle": "mort-vivant",
+					"nom_regle": "immunise_psychologie",
 					"valeur_regle": 1
 				},
 				{
@@ -157,7 +157,7 @@
 					"valeur_regle": 6
 				},
 				{
-					"nom_regle": "mort-vivant",
+					"nom_regle": "immunise_psychologie",
 					"valeur_regle": 1
 				},
 				{

@@ -27,7 +27,7 @@ class FactoryAjout
 
     private:
 
-        static std::map<std::string,Ajout*> m_catalogue;
+        static std::map<std::string,Ajout*> * m_catalogue;
 };
 
 #endif // FACTORYAJOUT_HPP

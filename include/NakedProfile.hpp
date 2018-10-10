@@ -68,7 +68,7 @@ private:
     int m_attaques;
     int m_commandement;
     int m_prix;
-    std::map<std::string, int> * m_regles;
+    Rules * m_regles;
     std::string m_faction;
     int m_profilId;
     std::map<std::string, int> * m_winningStats;

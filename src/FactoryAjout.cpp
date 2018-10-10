@@ -2,7 +2,7 @@
 
 using namespace std;
 
-map<string, Ajout*> FactoryAjout::m_catalogue = map<string, Ajout*>();
+map<string, Ajout*> * FactoryAjout::m_catalogue = new map<string, Ajout*>();
 
 FactoryAjout::FactoryAjout(){}
 
@@ -12,15 +12,15 @@ FactoryAjout::~FactoryAjout()
 }
 
 void FactoryAjout::Register(const string & key, Ajout * obj) {
-    if(m_catalogue.find(key) == m_catalogue.end()) {
-        m_catalogue[key] = obj;
+    if(m_catalogue->find(key) == m_catalogue->end()) {
+        m_catalogue->insert(pair<string, Ajout*>(key,obj));
     }
 }
 
 Ajout * FactoryAjout::Create(const string& key) const {
     Ajout * tmp = 0;
-    map<string, Ajout*>::const_iterator it = m_catalogue.find(key);
-    if(it!=m_catalogue.end())
+    map<string, Ajout*>::const_iterator it = m_catalogue->find(key);
+    if(it!=m_catalogue->end())
     {
         tmp=((*it).second)->Clone();
     }
@@ -70,6 +70,7 @@ void FactoryAjout::initiate(){
     slotsArmeLourde->push_back(Constants::STRING_VALUE_SLOT_ARME_CORPS_A_CORPS);
     Item * armeLourde = new Item(Constants::STRING_VALUE_ACHAT_ARME_LOURDE, slotsArmeLourde);
     armeLourde->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE,1,-1,new vector<string>()));
+    armeLourde->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE,0,-1,new vector<string>()));
     armeLourde->addIncompatibilite(Constants::STRING_VALUE_SLOT_BOUCLIER);
     Register(Constants::STRING_VALUE_ACHAT_ARME_LOURDE, armeLourde);
 
@@ -80,4 +81,5 @@ void FactoryAjout::initiate(){
     conditionsLance->push_back(Constants::STRING_VALUE_CONDITION_TOUR_DE_CHARGE);
     lanceCavalerie->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE,3,1,conditionsLance));
     Register(Constants::STRING_VALUE_ACHAT_LANCE_CAVALERIE, lanceCavalerie);
+
 }

@@ -10,7 +10,6 @@ Personnage::Personnage() {
 
 Personnage::Personnage(Json jsonContainer)
 {
-
     m_type = jsonContainer[Constants::STRING_NAME_TYPE_PROFIL];
     m_name = jsonContainer[Constants::STRING_NAME_NOM_PERSONNAGE];
 
@@ -22,7 +21,6 @@ Personnage::Personnage(Json jsonContainer)
     {
 
         string nomAchat = data[i];
-        cout << "ajout de l'achat " << nomAchat <<endl;
         addAchat(nomAchat);
     }
 
@@ -30,7 +28,6 @@ Personnage::Personnage(Json jsonContainer)
     for(unsigned int i = 0; i < data.size(); i++)
     {
         string nomOption = data[i];
-        cout << "ajout de l'option " << nomOption <<endl;
         addOption(nomOption);
     }
 }
@@ -39,13 +36,13 @@ void Personnage::recopy(Personnage &p) {
     m_type = p.getType();
     m_name = p.getName();
 
-    std::vector<std::string> * achats = p.m_achats;
-    for(unsigned int i = 0; i < m_achats->size(); i++) {
+    std::vector<std::string> * achats = p.getAchats();
+    for(unsigned int i = 0; i < achats->size(); i++) {
         m_achats->push_back(achats->at(i));
     }
 
     std::vector<std::string> * options = p.m_options;
-    for(unsigned int i = 0; i < m_options->size(); i++) {
+    for(unsigned int i = 0; i < options->size(); i++) {
         m_options->push_back(options->at(i));
     }
 }
@@ -85,6 +82,7 @@ void to_json(Json& j, const Personnage& p)
 
 void from_json(const Json& j, Personnage& p)
 {
+    /*
     p.setType(j.at(Constants::STRING_NAME_TYPE_PROFIL).get<std::string>());
     p.setName(j.at(Constants::STRING_NAME_NOM_PERSONNAGE).get<std::string>());
 
@@ -104,7 +102,7 @@ void from_json(const Json& j, Personnage& p)
         cout << "ajout de l'option " << nomOption <<endl;
         p.addOption(nomOption);
     }
-
+    */
 }
 
 std::vector<std::string> * Personnage::getAjout() {
