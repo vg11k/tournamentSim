@@ -9,6 +9,7 @@ ProfileManager::ProfileManager()
 {
     m_profils = new map<string, NakedProfile*>();
     m_factory = new FactoryAjout();
+    m_factory->initiate();
 
     DIR *dp;
     struct dirent *ep;

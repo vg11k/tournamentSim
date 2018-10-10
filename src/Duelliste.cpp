@@ -17,8 +17,10 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setCommandement(profil->getCommandement());
     setPrix(profil->getPrix());
 
-m_rules = new Rules();
-    completer(profil->getRegles(), personnage->getAjout());setFaction(profil->getFaction());    setCurrentHP(getPointsDeVie());
+    m_rules = new Rules();
+    completer(profil->getRegles(), personnage->getAjout());
+    setFaction(profil->getFaction());
+    setCurrentHP(getPointsDeVie());
 
     m_quickAccess = new std::map<std::string,int>();
 
@@ -31,8 +33,14 @@ m_rules = new Rules();
         m_regles->insert(pair<string,int>(key, value));
     }
 
-    m_achats = new std::map<std::string, Item*>();
+    FactoryAjout factory;
 
+
+    m_achats = new std::vector<Item*>();
+    vector<string> * achats = personnage->getAchats();
+    for(vector<string>::iterator it = achats->begin(); it != achats->end(); ++it) {
+        m_achats->push_back((Item*)factory.Create(*it));
+    }
 
 
     m_regeneration = 999;
@@ -44,6 +52,7 @@ Duelliste::~Duelliste()
 {
     delete m_quickAccess;
     delete m_regles;
+    delete m_achats;
 }
 
 
@@ -97,9 +106,9 @@ bool Duelliste::checkIfRuleExist(string ruleName, bool updateQuickAccess) {
         value = m_regles->at(ruleName);
     }
 
-    for(map<string, Item*>::iterator it = m_achats->begin(); it != m_achats->end(); ++it)
+    for(vector<Item*>::iterator it = m_achats->begin(); it != m_achats->end(); ++it)
     {
-        Item * itemFound = it->second;
+        Item * itemFound = *it;
         if(itemFound->getRegles()->find(ruleName) != itemFound->getRegles()->end()) {
             found =  true;
             value = itemFound->getRegle(ruleName)->getCurrentValue();
@@ -179,4 +188,20 @@ void Duelliste::completer(std::map<std::string,int> * reglesProfil, std::vector<
     for(int i = 0; i < ajoutNames->size(); i++) {
         Ajout * ajout =  manager->getAjout(ajoutNames->at(i));
     }
+}
+
+int Duelliste::getInitiative() const {
+    int initiative = m_initiative;
+
+    Rules::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
+    if(it != m_rules->end()) {
+        initiative += it->second;
+    }
+
+    it = m_rules->find(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
+    if(it != m_rules->end()) {
+        initiative = it->second;
+    }
+
+    return initiative;
 }

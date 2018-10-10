@@ -33,6 +33,8 @@ public:
 
     //achats et options condensees
     std::vector<std::string> * getAjout();
+    std::vector<std::string> * getAchats();
+    std::vector<std::string> * getOptions();
 
     /*
         check si le perso est "valide"
@@ -71,6 +73,13 @@ inline void Personnage::setType(std::string s) {
 }
 inline std::string Personnage::getType() const {
     return m_type;
+}
+
+inline std::vector<std::string> * Personnage::getAchats() {
+    return m_achats;
+}
+inline std::vector<std::string> * Personnage::getOptions() {
+    return m_options;
 }
 
 

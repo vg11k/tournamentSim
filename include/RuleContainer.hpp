@@ -12,6 +12,7 @@ public:
     virtual ~RuleContainer();
 
     void setTemporatyValue(int value, int turnEffect);
+    std::string getRuleName();
     int getCurrentValue();
     bool isEffective();
 
@@ -27,8 +28,10 @@ private:
     //-1 always, 0 off, x to decrease
     int m_temporaryTurnEffect;
     int m_temporaryValue;
-
-
 };
+
+inline std::string RuleContainer::getRuleName() {
+    return m_ruleName;
+}
 
 #endif // RULECONTAINER_HPP

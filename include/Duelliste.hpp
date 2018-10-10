@@ -100,7 +100,7 @@ private:
     int m_currentHP;
     Rules * m_rules;
 
-    std::map<std::string, Item*> * m_achats;
+    std::vector<Item*> * m_achats;
     std::map<std::string,int> * m_regles;
     std::map<std::string,int> * m_quickAccess;
 
@@ -143,9 +143,6 @@ inline int Duelliste::getPointsDeVie() const {
 }
 inline void Duelliste::setInitiative(int i) {
     m_initiative = i;
-}
-inline int Duelliste::getInitiative() const {
-    return m_initiative;
 }
 inline void Duelliste::setAttaques(int i) {
     m_attaques = i;

@@ -52,9 +52,15 @@ public:
     static const std::string STRING_NAME_VALEUR_ACHATS;
 
     static const std::string STRING_NAME_REGLE_AMELIORATION_CAPACITE_COMBAT;
-    static const std::string STRING_NAME_REGLE_ATTAQUES;
-    static const std::string STRING_NAME_REGLE_POINTS_DE_VIE;
-    static const std::string STRING_NAME_REGLE_ENDURANCE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_ARMURE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_ATTAQUES;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_POINTS_DE_VIE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_ENDURANCE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_FORCE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_INITIATIVE;
+
+    static const std::string STRING_NAME_REGLE_CHANGEMENT_INITIATIVE;
+
 
 
 
@@ -86,13 +92,19 @@ public:
 //equipement commun
     static const std::string STRING_VALUE_ACHAT_OBJET_MAGIQUE;
     static const std::string STRING_VALUE_ACHAT_BOUCLIER;
-    static const std::string STRING_VALUE_ARMURE_LEGERE;
-    static const std::string STRING_VALUE_ARMURE_LOURDE;
+    static const std::string STRING_VALUE_ACHAT_ARMURE_LEGERE;
+    static const std::string STRING_VALUE_ACHAT_ARMURE_LOURDE;
     static const std::string STRING_VALUE_ACHAT_PAIRE_ARMES;
     static const std::string STRING_VALUE_ACHAT_HALLEBARDE;
     static const std::string STRING_VALUE_ACHAT_ARME_LOURDE;
     static const std::string STRING_VALUE_ACHAT_LANCE_CAVALERIE;
 
+    static const std::string STRING_VALUE_SLOT_BOUCLIER;
+    static const std::string STRING_VALUE_SLOT_ARMURE_TORSE;
+    static const std::string STRING_VALUE_SLOT_ARME_CORPS_A_CORPS;
+    static const std::string STRING_VALUE_SLOT_ARME_CAVALERIE;
+
+    static const std::string STRING_VALUE_CONDITION_TOUR_DE_CHARGE;
 
     virtual ~Constants() {}
 

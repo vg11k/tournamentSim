@@ -45,9 +45,14 @@ const string Constants::STRING_NAME_VALEUR_REGLE= "valeur_regle";
 const string Constants::STRING_NAME_VALEUR_ACHATS= "valeur_achat";
 
 const string Constants::STRING_NAME_REGLE_AMELIORATION_CAPACITE_COMBAT="amelioration_capacite_combat";
-const string Constants::STRING_NAME_REGLE_ATTAQUES="amelioration_attaques";
-const string Constants::STRING_NAME_REGLE_POINTS_DE_VIE="amelioration_points_de_vie";
-const string Constants::STRING_NAME_REGLE_ENDURANCE="amelioration_endurance";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_ARMURE="amelioration_armure";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_ATTAQUES="amelioration_attaques";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_POINTS_DE_VIE="amelioration_points_de_vie";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_ENDURANCE="amelioration_endurance";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_FORCE="amelioration_force";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE="amelioration_initiative";
+
+const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE= "changement_initiative";
 
 const string Constants::STRING_VALUE_REGLE_MORTVIVANT= "mort-vivant";
 const string Constants::STRING_VALUE_REGLE_ATTAQUES_MAGIQUES= "attaques_magiques";
@@ -77,14 +82,17 @@ const string STRING_VALUE_REGLE_PERFORANT="perforant";
 //equipement commun
 const string Constants::STRING_VALUE_ACHAT_OBJET_MAGIQUE= "objets_magique";
 const string Constants::STRING_VALUE_ACHAT_BOUCLIER= "bouclier";
-const string Constants::STRING_VALUE_ARMURE_LEGERE= "amure_legere";
-const string Constants::STRING_VALUE_ARMURE_LOURDE= "amure_lourde";
+const string Constants::STRING_VALUE_ACHAT_ARMURE_LEGERE= "amure_legere";
+const string Constants::STRING_VALUE_ACHAT_ARMURE_LOURDE= "amure_lourde";
 const string Constants::STRING_VALUE_ACHAT_PAIRE_ARMES= "paire_armes";
 const string Constants::STRING_VALUE_ACHAT_HALLEBARDE= "hallebarde";
 const string Constants::STRING_VALUE_ACHAT_ARME_LOURDE= "arme_lourde";
 const string Constants::STRING_VALUE_ACHAT_LANCE_CAVALERIE= "lance_de_cavalerie";
 
+//slots
+const std::string Constants::STRING_VALUE_SLOT_BOUCLIER= "bouclier";
+const std::string Constants::STRING_VALUE_SLOT_ARMURE_TORSE= "armure_torse";
+const std::string Constants::STRING_VALUE_SLOT_ARME_CORPS_A_CORPS= "arme_corps_a_corps";
+const std::string Constants::STRING_VALUE_SLOT_ARME_CAVALERIE="arme_cavalerie";
 
-
-
-
+const std::string Constants::STRING_VALUE_CONDITION_TOUR_DE_CHARGE="tour_de_charge";

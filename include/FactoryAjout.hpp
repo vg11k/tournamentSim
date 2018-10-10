@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 
+#include "Constants.h"
 #include "Ajout.hpp"
 #include "Item.hpp"
 #include "Option.hpp"
@@ -19,6 +20,8 @@ class FactoryAjout
 
         //Celle qui va créer les objets
         Ajout* Create(const std::string& key) const;
+
+        void initiate();
 
     protected:
 

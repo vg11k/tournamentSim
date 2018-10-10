@@ -11,11 +11,13 @@
 class Ajout
 {
     public:
-        Ajout();
+        Ajout(std::string name);
         virtual ~Ajout();
         virtual Ajout* Clone() const  = 0;
 
         RuleContainer * getRegle(std::string ruleName);
+        void addRegle(RuleContainer * rule);
+        void addIncompatibilite(std::string incompatibilite);
         std::map<std::string, RuleContainer*> * getRegles();
 
     protected:

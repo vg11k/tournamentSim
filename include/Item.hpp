@@ -2,13 +2,14 @@
 #define ITEM_H
 
 #include <iostream>
+#include <vector>
 
 #include "Ajout.hpp"
 
 class Item : public Ajout
 {
     public:
-        Item();
+        Item(std::string name, std::vector<std::string> * slotsUsed);
         virtual ~Item();
 
         Ajout * Clone() const;
@@ -16,9 +17,7 @@ class Item : public Ajout
     protected:
 
     private:
-
-        std::string m_slot;
-        bool m_magique;
+        std::vector<std::string> * m_slots;
 };
 
 #endif // ITEM_H

@@ -1,8 +1,9 @@
 #include "Item.hpp"
 
-Item::Item()
-{
+using namespace std;
 
+Item::Item(string name, vector<string> * slotUsed) : Ajout(name) {
+    m_slots = slotUsed;
 }
 
 Item::~Item()

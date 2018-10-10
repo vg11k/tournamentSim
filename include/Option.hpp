@@ -10,7 +10,7 @@
 class Option : public Ajout
 {
     public:
-        Option();
+        Option(std::string name);
         virtual ~Option();
         Ajout * Clone() const;
 

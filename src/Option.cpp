@@ -1,6 +1,8 @@
 #include "Option.hpp"
 
-Option::Option()
+using namespace std;
+
+Option::Option(string name) : Ajout(name)
 {
     //ctor
 }
