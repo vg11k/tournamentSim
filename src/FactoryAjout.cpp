@@ -69,7 +69,7 @@ void FactoryAjout::initiate(){
     vector<string> * slotsArmeLourde = new vector<string>();
     slotsArmeLourde->push_back(Constants::STRING_VALUE_SLOT_ARME_CORPS_A_CORPS);
     Item * armeLourde = new Item(Constants::STRING_VALUE_ACHAT_ARME_LOURDE, slotsArmeLourde);
-    armeLourde->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE,1,-1,new vector<string>()));
+    armeLourde->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE,2,-1,new vector<string>()));
     armeLourde->addRegle(new RuleContainer(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE,0,-1,new vector<string>()));
     armeLourde->addIncompatibilite(Constants::STRING_VALUE_SLOT_BOUCLIER);
     Register(Constants::STRING_VALUE_ACHAT_ARME_LOURDE, armeLourde);

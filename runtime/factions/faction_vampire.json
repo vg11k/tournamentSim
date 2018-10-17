@@ -23,7 +23,7 @@
 					"valeur_regle" : 1
 				},
 				{
-					"nom_regle" : "perforant",
+					"nom_regle" : "coup_fatal",
 					"valeur_regle" : 6
 				},
 				{
@@ -509,5 +509,267 @@
 			]
 		}
 		
+	],
+	"achats":
+	[
+		{
+			"nom_achat": "lance_de_terreur",
+			"prix":80,
+			"slots":["arme_cavalerie","arme_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "touche_automatique",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "lame_de_la_soif_rouge",
+			"prix":55,
+			"slots": ["arme_corps_a_corps","arme_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_force",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "soin_sur_blessure_ingligee",
+					"valeur_regle": 5
+				}
+			]
+		},
+		{
+			"nom_achat": "hache_noire_de_krell",
+			"prix": 50,
+			"slots": ["arme_corps_a_corps","arme_magique"],
+			"profils_eligibles": ["roi_revenant"],
+			"incompatibilite": ["bouclier"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_force",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle": "blessures_multiples",
+					"valeur_regle": 3
+				},
+				{
+					"nom_regle": "degat_duree_endurance",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "changement_initiative",
+					"valeur_regle": 0
+				}
+				
+			]
+		},
+		{
+			"nom_achat": "skabscrath",
+			"prix":40,
+			"slots":["arme_corps_a_corps","arme_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "charge_devastatrice",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "frenesie",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "attaques_enflammees",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "epee_des_rois",
+			"prix":30,
+			"slots":["arme_corps_a_corps","arme_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"ajout_regles":[
+				{
+					"nom_regle": "coup_fatal",
+					"valeur_regle": 6
+				}
+			]
+		},
+		{
+			"nom_achat": "epee_des_rois_revenants",
+			"prix": 30,
+			"slots":["arme_corps_a_corps","arme_magique"],
+			"profils_eligibles": ["roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "coup_fatal",
+					"valeur_regle": 5
+				}
+			]
+		},
+		{
+			"nom_achat": "gantelets_sanglants_de_gilles_de_raux",
+			"prix": 70,
+			"slots":["armure_mains", "armure_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_armure",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "amelioration_points_de_vie",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "heaume_sanglant_de_walach",
+			"prix": 60,
+			"slots":["armure_tete", "armure_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_armure",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "sauvegarde_invulnerable",
+					"valeur_regle": 5
+				}
+			]
+		},
+		{
+			"nom_achat": "cuirasse_cadaverique",
+			"prix": 30,
+			"slots":["armure_torse", "armure_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_armure",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle": "immunise_coup_fatal",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "immunise_attaques_empoisonnees",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "cuirasse_maudite",
+			"prix": 30,
+			"slots":["armure_torse", "armure_magique"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "amelioration_armure",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle": "amelioration_endurance",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "amelioration_capacite_combat",
+					"valeur_regle": -3
+				},
+				{
+					"nom_regle": "amelioration_initiative",
+					"valeur_regle": -3
+				}
+			]
+		},
+		{
+			"nom_achat": "anneau_eternite",
+			"prix": 100,
+			"slots":["talisman"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan"],
+			"ajout_regles":[
+				{
+					"nom_regle": "sauvegarde_invulnerable_temporaire",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle": "immunise_coup_fatal",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "immunise_blessures_multiples",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "linceul_de_nuit",
+			"prix": 80,
+			"slots":["talisman"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "annule_bonus_force_ennemi",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "gemme_de_sang",
+			"prix": 40,
+			"slots":["talisman"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "annule_bonus_force_ennemi",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "consommable",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "gemme_de_sang",
+					"valeur": 1
+				}
+			]
+		},
+		{
+			"nom_achat": "dents_de_tullius",
+			"prix": 100,
+			"slots":["objets"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "distrayant",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "parade",
+					"valeur_regle": 1
+				}
+			]
+		}
+		,
+		{
+			"nom_achat": "livre_des_maudits",
+			"prix": 30,
+			"slots":["objets"],
+			"profils_eligibles": ["vampire_seigneur", "vampire_courtisan", "roi_revenant"],
+			"ajout_regles":[
+				{
+					"nom_regle": "consommable",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "changement_temporaire_capacite_combat_ennemi",
+					"valeur_regle": 1
+				}
+			]
+		}
 	]
 }

@@ -194,8 +194,9 @@ void Duelliste::completer(std::map<std::string,int> * reglesProfil,
 
 int Duelliste::getInitiative() const {
     int initiative = m_initiative;
+    initiative = genericGetter(initiative, Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE, Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
 
-    int changementInit = -1;
+    /*int changementInit = -1;
     int ameliorationInit = 0;
 
     //checker les passifs de base et options du profil
@@ -231,13 +232,15 @@ int Duelliste::getInitiative() const {
     else {
         initiative += ameliorationInit;
     }
-    return initiative;
+    return initiative;*/
 }
 
 
 int Duelliste::getForce() const {
     int force = m_force;
+    force = genericGetter(force, Constants::STRING_NAME_REGLE_AMELIORATION_FORCE, Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
 
+    /*
     int changementForce = -1;
     int ameliorationForce = 0;
 
@@ -273,6 +276,54 @@ int Duelliste::getForce() const {
     }
     else {
         force += ameliorationForce;
-    }
+    }*/
     return force;
+}
+
+int Duelliste::getAttaques() const {
+    int attaques = m_attaques;
+    attaques = genericGetter(attaques, Constants::STRING_NAME_REGLE_AMELIORATION_ATTAQUES, Constants::STRING_NAME_REGLE_CHANGEMENT_ATTAQUES);
+    return m_attaques;
+}
+
+int Duelliste::genericGetter(int initialValue, const string ameliorationStringName, const string changementStringName) const {
+    int result = initialValue;
+
+    int changementValue = -1;
+    int ameliorationValue = 0;
+
+    //checker les passifs de base et options du profil
+    RuleContainers::iterator it = m_rules->find(ameliorationStringName);
+    if(it != m_rules->end()) {
+        ameliorationValue += it->second->getCurrentValue();
+    }
+
+    it = m_rules->find(changementStringName);
+    if(it != m_rules->end()) {
+        changementValue = it->second->getCurrentValue();
+    }
+
+    //checker les items du personnage
+    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
+
+        Item * item = *itemIt;
+        RuleContainers * reglesItem = item->getRegles();
+
+        it = reglesItem->find(ameliorationStringName);
+        if(it != reglesItem->end()) {
+            ameliorationValue += it->second->getCurrentValue();
+        }
+
+        it = reglesItem->find(changementStringName);
+        if(it != reglesItem->end()) {
+            changementValue = it->second->getCurrentValue();
+        }
+    }
+    if(changementValue != -1) {
+        result = changementValue;
+    }
+    else {
+        result += ameliorationValue;
+    }
+    return result;
 }

@@ -54,6 +54,7 @@ const string Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE="amelioration_
 
 const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE= "changement_initiative";
 const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE="changement_force";
+const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_ATTAQUES="changement_attaques";
 
 const string Constants::STRING_VALUE_REGLE_MORTVIVANT= "mort-vivant";
 const string Constants::STRING_VALUE_REGLE_ATTAQUES_MAGIQUES= "attaques_magiques";

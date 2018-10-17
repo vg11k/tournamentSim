@@ -61,6 +61,7 @@ public:
 
     static const std::string STRING_NAME_REGLE_CHANGEMENT_INITIATIVE;
     static const std::string STRING_NAME_REGLE_CHANGEMENT_FORCE;
+    static const std::string STRING_NAME_REGLE_CHANGEMENT_ATTAQUES;
 
 
 

@@ -76,6 +76,8 @@ public:
 
 protected:
 
+    int genericGetter(int initialValue, const std::string ameliorationStringName, const std::string changementStringName) const;
+
 private:
 
     int m_capacite_combat;
@@ -145,9 +147,6 @@ inline void Duelliste::setInitiative(int i) {
 }
 inline void Duelliste::setAttaques(int i) {
     m_attaques = i;
-}
-inline int Duelliste::getAttaques() const {
-    return m_attaques;
 }
 inline void Duelliste::setCommandement(int i) {
     m_commandement = i;
