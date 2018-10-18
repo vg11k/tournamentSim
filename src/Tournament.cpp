@@ -245,7 +245,7 @@ bool Tournament::blessureAnnulee(Duelliste * attaquant, Duelliste * cible, bool 
     }
 
     //invulnerable
-    if(cible->beneficieInvulnerabilite())
+    if(cible->beneficieSauvegardeInvulnerable())
     {
         int sauvegardeInvulnerable = cible->getSauvegardeInvulnerable();
         roll = getNew6D();

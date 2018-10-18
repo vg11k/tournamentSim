@@ -482,10 +482,10 @@
 			"ajout_regles": [
 				{
 					"nom_regle": "regeneration",
-					"valeur_regle": 5
+					"valeur_regle": 6
 				},
 				{
-					"nom_regle": "regeneration_amelioree",
+					"nom_regle": "amelioration_regeneration",
 					"valeur_regle": 1
 				}
 			]

@@ -51,6 +51,8 @@ const string Constants::STRING_NAME_REGLE_AMELIORATION_POINTS_DE_VIE="ameliorati
 const string Constants::STRING_NAME_REGLE_AMELIORATION_ENDURANCE="amelioration_endurance";
 const string Constants::STRING_NAME_REGLE_AMELIORATION_FORCE="amelioration_force";
 const string Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE="amelioration_initiative";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_REGENERATION="amelioration_regeneration";
+const string Constants::STRING_NAME_REGLE_AMELIORATION_SAUVEGARDE_INVULNERABLE="amelioration_sauvegarde_invulnerable";
 
 const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE= "changement_initiative";
 const std::string Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE="changement_force";
@@ -77,10 +79,11 @@ const string Constants::STRING_VALUE_REGLE_BAISSE_COMMANDEMENT_ENNEMI="baisse_co
 const string Constants::STRING_VALUE_REGLE_ENNEMI_RELANCE_PEUR="ennemi_relance_peur";
 const string Constants::STRING_VALUE_REGLE_HAINE="haine";
 const string Constants::STRING_VALUE_REGLE_INFANTERIE_MONSTRUEUSE="infanterie_monstrueuse";
-const string Constants::STRING_VALUE_REGLE_REGENERATION_AMELIOREE="regeneration_amelioree";
+
 const string Constants::STRING_VALUE_REGLE_ATTAQUES_EMPOISONNEES="attaques_empoisonnees";
 const string Constants::STRING_VALUE_REGLE_PERFORANT="perforant";
 const string Constants::STRING_VALUE_REGLE_IMMUNISE_PSYCHOLOGIE="immunise_psychologie";
+const string Constants::STRING_VALUE_REGLE_SAUVEGARDE_INVULNERABLE="sauvegarde_invulnerable";
 
 //equipement commun
 const string Constants::STRING_VALUE_ACHAT_OBJET_MAGIQUE= "objets_magique";

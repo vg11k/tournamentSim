@@ -22,7 +22,7 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
     setFaction(profil->getFaction());
     setCurrentHP(getPointsDeVie());
 
-    m_quickAccess = new std::map<std::string,int>();
+    m_quickAccess = new std::map<std::string,bool>();
 
     FactoryRules ruleFactory;
 
@@ -45,9 +45,6 @@ Duelliste::Duelliste(NakedProfile* profil, Personnage* personnage)
         m_achats->push_back((Item*)factory.Create(*it));
     }
 
-
-    m_regeneration = 999;
-    m_invulnerable = 999;
     m_charge = true;
 }
 
@@ -101,35 +98,40 @@ bool Duelliste::beneficieRegeneration() {
     return checkIfRuleExist(Constants::STRING_VALUE_REGLE_REGENERATION, true);
 }
 
+bool Duelliste::beneficieSauvegardeInvulnerable() {
+    return checkIfRuleExist(Constants::STRING_VALUE_REGLE_SAUVEGARDE_INVULNERABLE, true);
+}
+
 bool Duelliste::checkIfRuleExist(string ruleName, bool updateQuickAccess) {
+
+    if(m_quickAccess->find(ruleName) != m_quickAccess->end()) {
+        return m_quickAccess->at(ruleName);
+    }
+
     bool found = false;
+
     int value = -1;
     if(m_rules->find(ruleName) != m_rules->end()) {
         found =  true;
-        value = m_rules->at(ruleName)->getCurrentValue();
     }
 
-    for(vector<Item*>::iterator it = m_achats->begin(); it != m_achats->end(); ++it)
+    for(vector<Item*>::iterator it = m_achats->begin(); it != m_achats->end() && !found; ++it)
     {
         Item * itemFound = *it;
         if(itemFound->getRegles()->find(ruleName) != itemFound->getRegles()->end()) {
             found =  true;
-            value = itemFound->getRegle(ruleName)->getCurrentValue();
         }
     }
+
     if(updateQuickAccess) {
         if(found) {
-            m_quickAccess->insert(pair<string,int>(ruleName, value));
+            m_quickAccess->insert(pair<string,int>(ruleName, found));
         }
-        else if(m_quickAccess->find(ruleName) != m_quickAccess->end()){
+        /*else if(m_quickAccess->find(ruleName) != m_quickAccess->end()){
             m_quickAccess->erase(ruleName);
-        }
+        }*/
     }
     return found;
-}
-
-bool Duelliste::beneficieInvulnerabilite() {
-    return m_invulnerable != 999;
 }
 
 int Duelliste::getPerforant() {
@@ -139,12 +141,7 @@ int Duelliste::getPerforant() {
 int Duelliste::getSauvegardeArmure() {
     return m_armure;
 }
-int Duelliste::getRegeneration() {
-    return m_regeneration;
-}
-int Duelliste::getSauvegardeInvulnerable() {
-    return m_invulnerable;
-}
+
 
 /*/////////////////////
 //                  //
@@ -193,97 +190,36 @@ void Duelliste::completer(std::map<std::string,int> * reglesProfil,
 }
 
 int Duelliste::getInitiative() const {
-    int initiative = m_initiative;
-    initiative = genericGetter(initiative, Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE, Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
+    return genericGetter(m_initiative, Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE, Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);;
+}
 
-    /*int changementInit = -1;
-    int ameliorationInit = 0;
-
-    //checker les passifs de base et options du profil
-    RuleContainers::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
-    if(it != m_rules->end()) {
-        ameliorationInit += it->second->getCurrentValue();
+int Duelliste::getSauvegardeInvulnerable() const {
+    int sauvegarde = genericGetter(0, Constants::STRING_VALUE_REGLE_SAUVEGARDE_INVULNERABLE);
+    int sauvegardeAmelioree = genericGetter(-1, Constants::STRING_NAME_REGLE_AMELIORATION_SAUVEGARDE_INVULNERABLE);
+     if(sauvegarde > 0 && sauvegardeAmelioree != -1) {
+        sauvegarde -= sauvegardeAmelioree;
     }
-
-    it = m_rules->find(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
-    if(it != m_rules->end()) {
-        changementInit = it->second->getCurrentValue();
-    }
-
-    //checker les items du personnage
-    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
-
-        Item * item = *itemIt;
-        RuleContainers * reglesItem = item->getRegles();
-
-        it = reglesItem->find(Constants::STRING_NAME_REGLE_AMELIORATION_INITIATIVE);
-        if(it != reglesItem->end()) {
-            ameliorationInit += it->second->getCurrentValue();
-        }
-
-        it = reglesItem->find(Constants::STRING_NAME_REGLE_CHANGEMENT_INITIATIVE);
-        if(it != reglesItem->end()) {
-            changementInit = it->second->getCurrentValue();
-        }
-    }
-    if(changementInit != -1) {
-        initiative = changementInit;
-    }
-    else {
-        initiative += ameliorationInit;
-    }
-    return initiative;*/
+    return sauvegarde;
 }
 
 
 int Duelliste::getForce() const {
-    int force = m_force;
-    force = genericGetter(force, Constants::STRING_NAME_REGLE_AMELIORATION_FORCE, Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
-
-    /*
-    int changementForce = -1;
-    int ameliorationForce = 0;
-
-    //checker les passifs de base et options du profil
-    RuleContainers::iterator it = m_rules->find(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE);
-    if(it != m_rules->end()) {
-        ameliorationForce += it->second->getCurrentValue();
-    }
-
-    it = m_rules->find(Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
-    if(it != m_rules->end()) {
-        changementForce = it->second->getCurrentValue();
-    }
-
-    //checker les items du personnage
-    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
-
-        Item * item = *itemIt;
-        RuleContainers * reglesItem = item->getRegles();
-
-        it = reglesItem->find(Constants::STRING_NAME_REGLE_AMELIORATION_FORCE);
-        if(it != reglesItem->end()) {
-            ameliorationForce += it->second->getCurrentValue();
-        }
-
-        it = reglesItem->find(Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
-        if(it != reglesItem->end()) {
-            changementForce = it->second->getCurrentValue();
-        }
-    }
-    if(changementForce != -1) {
-        force = changementForce;
-    }
-    else {
-        force += ameliorationForce;
-    }*/
-    return force;
+    return genericGetter(m_force, Constants::STRING_NAME_REGLE_AMELIORATION_FORCE, Constants::STRING_NAME_REGLE_CHANGEMENT_FORCE);
 }
 
 int Duelliste::getAttaques() const {
-    int attaques = m_attaques;
-    attaques = genericGetter(attaques, Constants::STRING_NAME_REGLE_AMELIORATION_ATTAQUES, Constants::STRING_NAME_REGLE_CHANGEMENT_ATTAQUES);
-    return m_attaques;
+    return genericGetter(m_attaques, Constants::STRING_NAME_REGLE_AMELIORATION_ATTAQUES, Constants::STRING_NAME_REGLE_CHANGEMENT_ATTAQUES);
+}
+
+int Duelliste::getRegeneration() const {
+    int regeneration = genericGetter(0, Constants::STRING_VALUE_REGLE_REGENERATION);
+    int regenAmelioree = genericGetter(-1, Constants::STRING_NAME_REGLE_AMELIORATION_REGENERATION);
+
+    if(regeneration > 0 && regenAmelioree != -1) {
+        regeneration -= regenAmelioree;
+    }
+
+    return regeneration;
 }
 
 int Duelliste::genericGetter(int initialValue, const string ameliorationStringName, const string changementStringName) const {
@@ -325,5 +261,38 @@ int Duelliste::genericGetter(int initialValue, const string ameliorationStringNa
     else {
         result += ameliorationValue;
     }
+    return result;
+}
+
+int Duelliste::genericGetter(int initialValue, const string changementStringName) const {
+    int result = initialValue;
+    int changementValue = -1;
+    //checker les passifs de base et options du profil
+    RuleContainers::iterator it = m_rules->find(changementStringName);
+
+    it = m_rules->find(changementStringName);
+    if(it != m_rules->end()) {
+        changementValue = it->second->getCurrentValue();
+    }
+
+    //checker les items du personnage
+    for(std::vector<Item*>::iterator itemIt = m_achats->begin(); itemIt != m_achats->end(); ++itemIt) {
+
+        Item * item = *itemIt;
+        RuleContainers * reglesItem = item->getRegles();
+
+        it = reglesItem->find(changementStringName);
+        if(it != reglesItem->end()) {
+            int itemValue = it->second->getCurrentValue();
+            if(itemValue < changementValue) {
+                changementValue = itemValue;
+            }
+        }
+    }
+
+    if(changementValue != -1) {
+        result = changementValue;
+    }
+
     return result;
 }

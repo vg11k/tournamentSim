@@ -60,13 +60,13 @@ public:
     bool utiliseAttaquesDivines();
 
     bool beneficieRegeneration();
-    bool beneficieInvulnerabilite();
+    bool beneficieSauvegardeInvulnerable();
 
     int getPerforant();
 
     int getSauvegardeArmure();
-    int getRegeneration();
-    int getSauvegardeInvulnerable();
+    int getRegeneration() const;
+    int getSauvegardeInvulnerable() const;
 
     bool checkIfRuleExist(std::string ruleName, bool updateQuickAccess);
 
@@ -77,6 +77,7 @@ public:
 protected:
 
     int genericGetter(int initialValue, const std::string ameliorationStringName, const std::string changementStringName) const;
+    int genericGetter(int initialValue, const std::string changementStringName) const;
 
 private:
 
@@ -98,15 +99,13 @@ private:
 
     int m_perforant;
     int m_armure;
-    int m_regeneration;
-    int m_invulnerable;
 
     int m_currentHP;
     RuleContainers * m_rules;
 
     std::vector<Item*> * m_achats;
     //std::map<std::string,int> * m_regles;
-    std::map<std::string,int> * m_quickAccess;
+    std::map<std::string,bool> * m_quickAccess;
 
 
     Personnage * m_personnage;

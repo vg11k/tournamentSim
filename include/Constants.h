@@ -58,6 +58,8 @@ public:
     static const std::string STRING_NAME_REGLE_AMELIORATION_ENDURANCE;
     static const std::string STRING_NAME_REGLE_AMELIORATION_FORCE;
     static const std::string STRING_NAME_REGLE_AMELIORATION_INITIATIVE;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_REGENERATION;
+    static const std::string STRING_NAME_REGLE_AMELIORATION_SAUVEGARDE_INVULNERABLE;
 
     static const std::string STRING_NAME_REGLE_CHANGEMENT_INITIATIVE;
     static const std::string STRING_NAME_REGLE_CHANGEMENT_FORCE;
@@ -87,10 +89,10 @@ public:
     static const std::string STRING_VALUE_REGLE_ENNEMI_RELANCE_PEUR;
     static const std::string STRING_VALUE_REGLE_HAINE;
     static const std::string STRING_VALUE_REGLE_INFANTERIE_MONSTRUEUSE;
-    static const std::string STRING_VALUE_REGLE_REGENERATION_AMELIOREE;
     static const std::string STRING_VALUE_REGLE_ATTAQUES_EMPOISONNEES;
     static const std::string STRING_VALUE_REGLE_PERFORANT;
     static const std::string STRING_VALUE_REGLE_IMMUNISE_PSYCHOLOGIE;
+    static const std::string STRING_VALUE_REGLE_SAUVEGARDE_INVULNERABLE;
 
 
 //equipement commun
