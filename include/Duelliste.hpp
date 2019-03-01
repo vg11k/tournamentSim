@@ -11,6 +11,9 @@
 
 class Personnage;
 
+/*Instance de Personnage a usage unique qui effectuera un combat
+Est genere a partir d'un profil nu et des customisation d'un personnage
+ex Oldrick le Roi Revenant*/
 class Duelliste
 {
 public:

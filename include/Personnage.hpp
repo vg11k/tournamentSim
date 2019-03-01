@@ -10,6 +10,8 @@
 
 class Duelliste;
 
+/*Profil complet d'un personnage (ex Oldrick)
+Toutefois il n'est pas destine a evoluer au cours de l'application*/
 class Personnage
 {
 public:

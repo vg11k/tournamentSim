@@ -7,6 +7,7 @@
 #include "Constants.h"
 
 
+/*Profil nu et abstrait d'un personnage (ex : Roi Revenant)*/
 class NakedProfile
 {
 public:
