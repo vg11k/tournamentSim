@@ -1,0 +1,305 @@
+{
+	"faction": "bretonnie",
+	"profils": [
+		{
+			"type_profil": "duc",
+			"type_personnage": "seigneur",
+			"capacite_combat": 6,
+			"capacite_tir": 3,
+			"force": 4,
+			"endurance": 4,
+			"points_de_vie": 3,
+			"initiative": 6,
+			"attaques": 4,
+			"commandement": 9,
+			"prix": 170,
+			"regles": [],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 200
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "armure_lourde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 12
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 20
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 12
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 30
+				},
+				{
+					"nom_achat": "cheval_caparaconne",
+					"valeur_achat": 85
+				},
+				{
+					"nom_achat": "pegase",
+					"valeur_achat": 130
+				},
+				{
+					"nom_achat": "hippogriffe",
+					"valeur_achat": 240
+				}
+			]
+		},
+		{
+			"type_profil": "parangon",
+			"type_personnage": "hero",
+			"capacite_combat": 5,
+			"capacite_tir": 3,
+			"force": 4,
+			"endurance": 4,
+			"points_de_vie": 3,
+			"initiative": 5,
+			"attaques": 3,
+			"commandement": 8,
+			"prix": 130,
+			"regles": [],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 100
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "armure_lourde",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "paire_armes",
+					"valeur_achat": 6
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 8
+				},
+				{
+					"nom_achat": "arme_lourde",
+					"valeur_achat": 8
+				},
+				{
+					"nom_achat": "lance_de_cavalerie",
+					"valeur_achat": 12
+				},
+				{
+					"nom_achat": "cheval_caparaconne",
+					"valeur_achat": 45
+				},
+				{
+					"nom_achat": "pegase",
+					"valeur_achat": 110
+				}
+			]
+		},
+		{
+			"type_profil": "chatelain",
+			"type_personnage": "hero",
+			"capacite_combat": 4,
+			"capacite_tir": 4,
+			"force": 4,
+			"endurance": 4,
+			"points_de_vie": 3,
+			"initiative": 3,
+			"attaques": 2,
+			"commandement": 7,
+			"prix": 120,
+			"regles": [
+				{
+					"nom_regle": "charge_devastatrice",
+					"valeur_regle": 1
+				}
+			],
+			"achats":[
+				{
+					"nom_achat": "objets_magique",
+					"valeur_achat": 50
+				},
+				{
+					"nom_achat": "bouclier",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "armure_legere",
+					"valeur_achat": 0
+				},
+				{
+					"nom_achat": "hallebarde",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "lance",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "lance_legere",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "arme_de_jet",
+					"valeur_achat": 4
+				},
+				{
+					"nom_achat": "arbalete",
+					"valeur_achat": 10
+				},
+				{
+					"nom_achat": "cheval_caparaconne",
+					"valeur_achat": 30
+				}
+			]
+		}
+	],
+	,
+	"options":[
+		{
+			"nom_option": "voeux_de_la_quete",
+			"prix":50,
+			"profils_eligibles": ["duc"],
+			"incompatibilite": ["sacrement_du_graal"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "grande_poigne",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "blessures_multiples_contre_imposant",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle" : "immunise_psychologie",
+					"valeur_regle" : 1
+				}
+			]
+		},
+		{
+			"nom_option": "voeux_de_la_quete_du_paladin",
+			"prix":30,
+			"profils_eligibles": ["paladin"],
+			"incompatibilite": ["sacrement_du_graal_du_paladin"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "grande_poigne",
+					"valeur_regle": 1
+				},
+				{
+					"nom_regle": "blessures_multiples_contre_imposant",
+					"valeur_regle": 2
+				},
+				{
+					"nom_regle" : "immunise_psychologie",
+					"valeur_regle" : 1
+				}
+			]
+		},
+		{
+			"nom_option": "sacrement_du_graal",
+			"prix":50,
+			"profils_eligibles": ["duc"],
+			"incompatibilite": ["voeux_de_la_quete"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "sauvegarde_invulnerable",
+					"valeur_regle": 5
+				},
+				{
+					"nom_regle" : "attaques_magiques",
+					"valeur_regle" : 1
+				},
+				{
+					"nom_regle" : "immunise_psychologie",
+					"valeur_regle" : 1
+				},
+				{
+					"nom_regle": "amelioration_capacite_combat",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_option": "sacrement_du_graal_du_paladin",
+			"prix":30,
+			"profils_eligibles": ["paladin"],
+			"incompatibilite": ["voeux_de_la_quete_du_paladin"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "sauvegarde_invulnerable",
+					"valeur_regle": 5
+				},
+				{
+					"nom_regle" : "attaques_magiques",
+					"valeur_regle" : 1
+				},
+				{
+					"nom_regle" : "immunise_psychologie",
+					"valeur_regle" : 1
+				},
+				{
+					"nom_regle": "amelioration_capacite_combat",
+					"valeur_regle": 1
+				}
+			]
+		},
+		{
+			"nom_option": "graces_du_roi",
+			"prix":30,
+			"profils_eligibles": ["paladin", "duc"],
+			"incompatibilite": ["graces_du_graal"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "sauvegarde_invulnerable",
+					"valeur_regle": 6
+				},
+				{
+					"nom_regle": "sauvegarde_invulnerable_ameliore_contre_force",
+					"valeur_regle": 5
+				}
+			]
+		},
+		{
+			"nom_option": "graces_du_graal",
+			"prix":30,
+			"profils_eligibles": ["paladin", "duc"],
+			"incompatibilite": ["graces_du_roi"],
+			"necessite": [],
+			"achats_additionnels": [],
+			"ajout_regles":[
+				{
+					"nom_regle": "sauvegarde_invulnerable",
+					"valeur_regle": 6
+				},
+				{
+					"nom_regle": "sauvegarde_invulnerable_ameliore_contre_perforant",
+					"valeur_regle": 5
+				}
+			]
+		}
+	]
+}
